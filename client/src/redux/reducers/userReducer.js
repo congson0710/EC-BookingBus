@@ -1,10 +1,9 @@
-export const userReducer = action => {
-  switch (action.type) {
-    case 'test': {
-      console.log('init redux');
-      return;
-    }
-    default:
-      return;
-  }
-};
+// export const userReducer = (state = {}, action) => {
+//   switch (action.type) {
+//     case 'test': {
+//       break;
+//     }
+//     default:
+//       break;
+//   }
+// }

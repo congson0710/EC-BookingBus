@@ -14,7 +14,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/dang-nhap" component={LoginPage} />
           <Route exact path="/dang-ki" component={RegisterPage} />
-          <Route exact path="/danh-sach-nha-xe" component={RegisterPage} />
+          <Route exact path="/danh-sach-ve-xe" component={RegisterPage} />
         </React.Fragment>
       </Router>
     );
