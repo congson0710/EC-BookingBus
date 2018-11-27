@@ -16,7 +16,7 @@ class RegisterForm extends Component {
             <label className="mt-3 auth-form__label" htmlFor="">Xác nhận mật khẩu</label>
             <input type="password" className="find_input" />
             <label className="mt-3 auth-form__label" htmlFor="">Bạn là:</label>
-            <select name="role" id="">
+            <select className="find_input" name="role" id="">
               <option selected value={ROLE.CLIENT}>Khách hàng</option>
               <option value={ROLE.COMPANY}>Nhà xe</option>
             </select>
