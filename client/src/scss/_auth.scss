@@ -1,0 +1,17 @@
+.auth-form-wrapper {
+  min-height: 100vh;
+  padding-top: 20%;
+  background: url(./images/home.jpg) center/cover no-repeat;
+  .container {
+    max-width: 600px;
+  }
+  h1 {
+    color: white;
+    text-align: center;
+  }
+}
+
+.auth-form__label {
+  color: white;
+  font-size: 16px;
+}
