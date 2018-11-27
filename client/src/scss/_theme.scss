@@ -366,16 +366,6 @@ section {
   margin-right: -4px;
   padding-top: 2px;
 }
-.main_nav_item.active::after {
-  display: block;
-  position: absolute;
-  bottom: 1px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #fe435b;
-  content: '';
-}
 .main_nav_item a {
   display: block;
   font-size: 15px;
@@ -389,6 +379,16 @@ section {
   -ms-transition: all 200ms ease;
   -o-transition: all 200ms ease;
   transition: all 200ms ease;
+  &.active::after {
+    display: block;
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #fe435b;
+    content: '';
+  }
 }
 .header.scrolled .main_nav_item a {
   line-height: 90px;
