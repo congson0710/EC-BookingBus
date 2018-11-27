@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ROLE } from '../../common/const';
+import { ROLE } from '../../common/const'
 
 class RegisterForm extends Component {
   state = {}
@@ -9,15 +9,28 @@ class RegisterForm extends Component {
         <div className="container">
           <h1>Đăng kí</h1>
           <form>
-            <label className="mt-3 auth-form__label" htmlFor="">Tên đăng nhập</label>
+            <label className="mt-3 auth-form__label" htmlFor="">
+              Tên đăng nhập
+            </label>
             <input type="text" className="find_input" />
-            <label className="mt-3 auth-form__label" htmlFor="">Mật khẩu</label>
+            <label className="mt-3 auth-form__label" htmlFor="">
+              Mật khẩu
+            </label>
             <input type="password" className="find_input" />
-            <label className="mt-3 auth-form__label" htmlFor="">Xác nhận mật khẩu</label>
+            <label className="mt-3 auth-form__label" htmlFor="">
+              Xác nhận mật khẩu
+            </label>
             <input type="password" className="find_input" />
-            <label className="mt-3 auth-form__label" htmlFor="">Bạn là:</label>
-            <select name="role" id="">
-              <option selected value={ROLE.CLIENT}>Khách hàng</option>
+            <label className="mt-3 auth-form__label" htmlFor="">
+              Bạn là:
+            </label>
+            <select
+              className="find_input"
+              name="role"
+              id=""
+              defaultValue={ROLE.CLIENT}
+            >
+              <option value={ROLE.CLIENT}>Khách hàng</option>
               <option value={ROLE.COMPANY}>Nhà xe</option>
             </select>
 
@@ -31,4 +44,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+export default RegisterForm
