@@ -851,6 +851,21 @@ section {
   outline-color: rgba(254, 67, 91, 0.5);
   border: solid 2px rgba(254, 67, 91, 0.5);
 }
+
+.main_button {
+  display: inline-block;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 52px;
+  padding-left: 46px;
+  padding-right: 46px;
+  background: #fe435b !important;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 .find_button {
   display: inline-block;
   height: 56px;

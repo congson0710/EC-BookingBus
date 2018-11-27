@@ -28,16 +28,13 @@ class Menu extends Component {
                   <a href="/">Kiểm tra vé</a>
                 </li>
                 <li className="main_nav_item">
-                  <a href="/">Dành cho nhà xe</a>
-                </li>
-                <li className="main_nav_item">
                   <a href="/">Liên hệ</a>
                 </li>
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" exact to="/login">Đăng nhập</NavLink>
+                  <NavLink activeClassName="active" exact to="/dang-nhap">Đăng nhập</NavLink>
                 </li>
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" exact to="/register">Đăng kí</NavLink>
+                  <NavLink activeClassName="active" exact to="/dang-ki">Đăng kí</NavLink>
                 </li>
               </ul>
             </nav>
