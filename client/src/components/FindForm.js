@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class FindForm extends Component {
+  _searchTrip = (e) => {
+    
+    e.preventDefault();
+    this.props.history.push('danh-sach-nha-xe');
+  };
   render() {
     return (
       <div className="find">
         <div className="container">
           <h1 className="find_title text-center">Tìm vé xe</h1>
           <div className="find_form_container">
-            <form className="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
+            <form onSubmit={this._searchTrip} className="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
               <div className="find_item">
                 <div className="text-left">Điểm đi</div>
                 <input
@@ -44,4 +50,4 @@ class FindForm extends Component {
   }
 }
 
-export default FindForm;
+export default withRouter(FindForm);

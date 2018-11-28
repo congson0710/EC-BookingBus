@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Menu from '../Menu';
 import Footer from '../Footer';
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../RegisterForm';
 
 class RegisterPage extends Component {
   state = {};

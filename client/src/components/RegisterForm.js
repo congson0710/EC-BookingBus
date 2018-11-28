@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ROLE } from '../../common/const'
+import { ROLE } from '../common/const'
 
 class RegisterForm extends Component {
   state = {}
