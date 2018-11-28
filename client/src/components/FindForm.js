@@ -5,7 +5,7 @@ class FindForm extends Component {
   _searchTrip = (e) => {
     
     e.preventDefault();
-    this.props.history.push('danh-sach-nha-xe');
+    this.props.history.push('danh-sach-ve-xe');
   };
   render() {
     return (
