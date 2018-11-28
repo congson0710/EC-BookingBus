@@ -47,7 +47,7 @@
 }
 body {
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   background: #ffffff;
   color: #131a2f;
@@ -1900,30 +1900,9 @@ section {
   }
 }
 
-/************
-11. 539px
-************/
-
-@media only screen and (max-width: 539px) {
-}
-
-/************
-12. 480px
-************/
-
-@media only screen and (max-width: 480px) {
-}
-
-/************
-13. 479px
-************/
-
-@media only screen and (max-width: 479px) {
-}
-
-/************
-14. 400px
-************/
-
-@media only screen and (max-width: 400px) {
+.body-section {
+  min-height: 100vh;
+  padding-top: 200px;
+  background: url(./images/home.jpg) center/cover no-repeat;
+  padding-bottom: 60px;
 }

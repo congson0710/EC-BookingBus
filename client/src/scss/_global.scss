@@ -1,0 +1,12 @@
+.table-custom {
+  background: rgba(0, 0, 0, 0.3);
+  th, td {
+    color: #fff;
+  }
+  th {
+    border: none;
+  }
+  td {
+    // border-top-color: transparent;
+  }
+}
