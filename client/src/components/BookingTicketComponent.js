@@ -5,6 +5,7 @@ class BookingTicketComponent extends Component {
     return (
       <div className="body-section">
         <div className="container" style={{ maxWidth: '600px' }}>
+          <h1 className="text-white text-center">Đặt vé</h1>
           <form>
             <label className="mt-3 auth-form__label" htmlFor="">
               Họ tên
@@ -22,7 +23,7 @@ class BookingTicketComponent extends Component {
               name="note"
               id=""
               cols="30"
-              rows="8"
+              rows="6"
               placeholder="Ghi chú"
             />
             <div className="text-center">
