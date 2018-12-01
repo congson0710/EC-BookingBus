@@ -7,10 +7,10 @@ import { ROLE } from '../../common/const';
 
 const DEFAULT_CLASS_NAME = 'find_input';
 
-const PureRegisterForm = ({}) => (
+const PureRegisterForm = ({ handleSubmit }) => (
   <Fragment>
     <h1>Đăng kí</h1>
-    <form>
+    <form onSubmit={handleSubmit}>
       <Field
         name="userName"
         component={inputField}

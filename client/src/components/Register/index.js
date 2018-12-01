@@ -1,19 +1,26 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import compose from 'recompose/compose';
+import defaultProps from 'recompose/defaultProps';
 
 import RegisterForm from './RegisterForm';
 
 const FORM_NAME = 'EcBooking/RegisterForm';
 
-const Register = () => (
+const Register = ({ handleSubmit }) => (
   <div className="auth-form-wrapper">
     <div className="container">
-      <RegisterForm />
+      <RegisterForm handleSubmit={handleSubmit} />
     </div>
   </div>
 );
 
-const withReduxForm = reduxForm({ form: FORM_NAME });
+const onSubmit = data => {
+  console.log('data to submin', data);
+};
 
-export default withReduxForm(Register);
+const withReduxForm = reduxForm({ form: FORM_NAME, onSubmit });
+
+const enhance = compose(withReduxForm);
+
+export default enhance(Register);
