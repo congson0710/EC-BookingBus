@@ -1,0 +1,22 @@
+.payment-checkbox {
+
+}
+
+.accordion {
+  .accordion__title {
+    background: #131a2f;
+    border-bottom: 1px solid rgba(#fff, 0.3);
+    & > label {
+      padding: 20px 10px;
+    }
+    .state > label {
+      color: #fff;
+      margin-left: 10px;
+    }
+  }
+  .accordion__body {
+    background: rgba(#131a2f, 0.3);
+    padding: 30px 10px;
+    color: #fff;
+  }
+}
