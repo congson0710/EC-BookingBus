@@ -10,7 +10,7 @@ const DEFAULT_CLASS_NAME = 'find_input';
 const PureRegisterForm = ({ handleSubmit }) => (
   <Fragment>
     <h1>Đăng kí</h1>
-    <form onSubmit={handleSubmit}>
+    <div>
       <Field
         name="userName"
         component={inputField}
@@ -19,7 +19,7 @@ const PureRegisterForm = ({ handleSubmit }) => (
         type="input"
       />
       <Field
-        name="userName"
+        name="password"
         component={inputField}
         label="Mật khẩu"
         className={DEFAULT_CLASS_NAME}
@@ -27,7 +27,7 @@ const PureRegisterForm = ({ handleSubmit }) => (
         required
       />
       <Field
-        name="userName"
+        name="reTypePassword"
         component={inputField}
         label="Xác nhận mật khẩu"
         className={DEFAULT_CLASS_NAME}
@@ -44,9 +44,11 @@ const PureRegisterForm = ({ handleSubmit }) => (
         role={ROLE}
       />
       <div className="text-center">
-        <button className="mt-5 button main_button">Đăng kí</button>
+        <button className="mt-5 button main_button" onClick={handleSubmit}>
+          Đăng kí
+        </button>
       </div>
-    </form>
+    </div>
   </Fragment>
 );
 

@@ -1,5 +1,18 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
+
 import { rootReducer } from './rootReducer';
 
-export const store = createStore(rootReducer, applyMiddleware(logger));
+const initialState = {
+  testState: 'test'
+};
+
+export const store = createStore(
+  rootReducer,
+  initialState,
+  compose(
+    applyMiddleware(reduxThunk, logger),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+);
