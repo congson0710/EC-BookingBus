@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React from 'react';
+import { reduxForm } from 'redux-form';
 import compose from 'recompose/compose';
 
 import RegisterForm from './RegisterForm';
