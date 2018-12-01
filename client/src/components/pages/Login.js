@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Menu from '../Menu'
 import Footer from '../Footer'
-import LoginForm from './LoginForm'
+import LoginForm from '../LoginForm'
 
 class LoginPage extends Component {
   state = {}

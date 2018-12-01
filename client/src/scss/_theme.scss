@@ -47,7 +47,7 @@
 }
 body {
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   background: #ffffff;
   color: #131a2f;
@@ -805,6 +805,20 @@ section {
   border: solid 2px rgba(255, 255, 255, 0.5);
   background: transparent;
 }
+.textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #ffffff;
+  border: solid 2px rgba(255, 255, 255, 0.5);
+  background: transparent;
+}
 .find_item:first-child {
   width: 25%;
 }
@@ -850,6 +864,21 @@ section {
 .find_input:focus {
   outline-color: rgba(254, 67, 91, 0.5);
   border: solid 2px rgba(254, 67, 91, 0.5);
+}
+
+.main_button {
+  display: inline-block;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 52px;
+  padding-left: 46px;
+  padding-right: 46px;
+  background: #fe435b !important;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 .find_button {
   display: inline-block;
@@ -1885,30 +1914,9 @@ section {
   }
 }
 
-/************
-11. 539px
-************/
-
-@media only screen and (max-width: 539px) {
-}
-
-/************
-12. 480px
-************/
-
-@media only screen and (max-width: 480px) {
-}
-
-/************
-13. 479px
-************/
-
-@media only screen and (max-width: 479px) {
-}
-
-/************
-14. 400px
-************/
-
-@media only screen and (max-width: 400px) {
+.body-section {
+  min-height: 100vh;
+  padding-top: 200px;
+  background: url(./images/home.jpg) center/cover no-repeat;
+  padding-bottom: 60px;
 }

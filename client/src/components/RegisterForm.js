@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ROLE } from '../../common/const'
+import { ROLE } from '../common/const'
 
 class RegisterForm extends Component {
   state = {}
@@ -12,15 +12,15 @@ class RegisterForm extends Component {
             <label className="mt-3 auth-form__label" htmlFor="">
               Tên đăng nhập
             </label>
-            <input type="text" className="find_input" />
+            <input required type="email" className="find_input" />
             <label className="mt-3 auth-form__label" htmlFor="">
               Mật khẩu
             </label>
-            <input type="password" className="find_input" />
+            <input required type="password" className="find_input" />
             <label className="mt-3 auth-form__label" htmlFor="">
               Xác nhận mật khẩu
             </label>
-            <input type="password" className="find_input" />
+            <input required type="password" className="find_input" />
             <label className="mt-3 auth-form__label" htmlFor="">
               Bạn là:
             </label>
@@ -35,7 +35,7 @@ class RegisterForm extends Component {
             </select>
 
             <div className="text-center">
-              <button className="button find_button">Đăng kí</button>
+              <button className="mt-5 button main_button">Đăng kí</button>
             </div>
           </form>
         </div>
