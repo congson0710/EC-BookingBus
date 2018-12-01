@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Menu from '../Menu';
 import Footer from '../Footer';
-import RegisterForm from '../RegisterForm';
+import Register from '../Register';
 
 class RegisterPage extends Component {
   state = {};
@@ -10,7 +10,7 @@ class RegisterPage extends Component {
     return (
       <React.Fragment>
         <Menu />
-        <RegisterForm />
+        <Register />
         <Footer />
       </React.Fragment>
     );
