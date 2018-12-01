@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import compose from 'recompose/compose';
-import defaultProps from 'recompose/defaultProps';
 
 import RegisterForm from './RegisterForm';
 
@@ -19,8 +19,24 @@ const onSubmit = data => {
   console.log('data to submin', data);
 };
 
-const withReduxForm = reduxForm({ form: FORM_NAME, onSubmit });
+const initialRoleValue = {
+  userRole: 1
+};
 
-const enhance = compose(withReduxForm);
+const connectToReduxStore = connect(
+  null,
+  null
+);
+
+const withReduxForm = reduxForm({
+  form: FORM_NAME,
+  initialValues: initialRoleValue,
+  onSubmit
+});
+
+const enhance = compose(
+  withReduxForm,
+  connectToReduxStore
+);
 
 export default enhance(Register);
