@@ -9,4 +9,16 @@
   td {
     // border-top-color: transparent;
   }
+  &.no-border {
+    td {
+      border-top: none;
+    }
+  }
+}
+
+.accordion__body {
+  display: none;
+  &.show {
+    display: block;
+  }
 }
