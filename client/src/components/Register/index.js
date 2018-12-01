@@ -1,7 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import compose from 'recompose/compose';
-import defaultProps from 'recompose/defaultProps';
 
 import RegisterForm from './RegisterForm';
 
@@ -16,7 +15,7 @@ const Register = ({ handleSubmit }) => (
 );
 
 const onSubmit = data => {
-  console.log('data to submin', data);
+  console.log('data to submit', data);
 };
 
 const withReduxForm = reduxForm({ form: FORM_NAME, onSubmit });
