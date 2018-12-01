@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import { rootReducer } from './rootReducer';
 
@@ -11,7 +12,7 @@ export const store = createStore(
   rootReducer,
   initialState,
   compose(
-    applyMiddleware(reduxThunk),
+    applyMiddleware(reduxThunk, logger),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );

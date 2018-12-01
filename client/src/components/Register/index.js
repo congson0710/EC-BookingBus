@@ -16,7 +16,7 @@ const Register = ({ handleSubmit }) => (
 );
 
 const onSubmit = data => {
-  console.log('data to submin', data);
+  console.log('data to submit', data);
 };
 
 const initialRoleValue = {
