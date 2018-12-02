@@ -34,6 +34,27 @@ const PureRegisterForm = ({ handleSubmit }) => (
         type="password"
         required
       />
+      <Field
+        name="phone"
+        component={inputField}
+        label="Số điện thoại"
+        className={DEFAULT_CLASS_NAME}
+        required
+      />
+      <Field
+        name="lastName"
+        component={inputField}
+        label="Họ"
+        className={DEFAULT_CLASS_NAME}
+        required
+      />
+      <Field
+        name="firstName"
+        component={inputField}
+        label="Tên"
+        className={DEFAULT_CLASS_NAME}
+        required
+      />
       <label className="mt-3 auth-form__label" htmlFor="">
         Bạn là:
       </label>
