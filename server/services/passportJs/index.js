@@ -1,5 +1,5 @@
 import passport from 'passport';
-import LocalStrategy from 'passport-local';
+const LocalStrategy = require('passport-local').Strategy;
 import { userModel as Users } from '../sequelize/models/userModel';
 
 passport.serializeUser((user, done) => {
