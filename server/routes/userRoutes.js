@@ -1,6 +1,9 @@
+import get from 'lodash/fp/get';
+
 module.exports = app => {
-  app.get('/api/init-route', (req, res) => {
-    const result = { result: 'success' };
-    res.send(result);
+  app.post('/api/register', (req, res) => {
+    const registerData = req.body;
+    console.log('regis data', registerData);
+    res.send('kdjfnvjkdfnjkv');
   });
 };
