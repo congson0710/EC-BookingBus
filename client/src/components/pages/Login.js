@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Menu from '../Menu'
-import Footer from '../Footer'
-import LoginForm from '../LoginForm'
+import Menu from '../Menu';
+import Footer from '../Footer';
+import LoginForm from '../Login/LoginForm';
 
 class LoginPage extends Component {
-  state = {}
+  state = {};
   render() {
     return (
       <React.Fragment>
@@ -13,8 +13,8 @@ class LoginPage extends Component {
         <LoginForm />
         <Footer />
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default LoginPage
+export default LoginPage;

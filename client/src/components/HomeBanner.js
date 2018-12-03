@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FindForm from './FindForm';
+import FindForm from './Search/FindForm';
 
 import HomeImage from '../images/home.jpg';
 

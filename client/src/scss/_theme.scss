@@ -267,7 +267,7 @@ section {
 
 .header {
   display: block;
-  position: fixed;
+  position: absolute;
   top: 47px;
   width: 100%;
   z-index: 100;
@@ -768,7 +768,6 @@ section {
   width: 100%;
   background: rgba(0, 0, 0, 0.2);
   padding: 63px 20px 70px;
-
 }
 .find_background {
   position: absolute;
