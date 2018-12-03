@@ -9,3 +9,13 @@ export const searchingThunkCreator = searchData => dispatch => {
     type: 'post'
   });
 };
+
+export const fetchListTicketThunkCreator = () => dispatch => {
+  thunkBodyCreator({
+    dispatch,
+    action: 'FetchListTicket',
+    route: '/api/list-ticket-ket',
+    data: {},
+    type: 'get'
+  });
+};

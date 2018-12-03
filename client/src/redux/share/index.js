@@ -4,7 +4,12 @@ import flow from 'lodash/fp/flow';
 import axios from '../../axios';
 import { formatActionType, isPost } from './utils';
 
-const thunkBody = async ({ dispatch, actionTypes, route, requestConfig }) => {
+const thunkBody = async ({
+  dispatch,
+  actionTypes,
+  route,
+  requestConfig = {}
+}) => {
   dispatch({
     type: get('request')(actionTypes)
   });
