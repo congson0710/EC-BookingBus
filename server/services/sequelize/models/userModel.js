@@ -8,10 +8,9 @@ export const userModel = sequelizeInstance.define('user', {
     allowNull: false,
     primaryKey: true
   },
-  userName: { type: Sequelize.STRING, allowNull: false },
+  email: { type: Sequelize.STRING, allowNull: false },
   userPassword: { type: Sequelize.STRING, allowNull: false },
-  firstName: { type: Sequelize.STRING, allowNull: false },
-  lastName: { type: Sequelize.STRING, allowNull: false },
+  userName: { type: Sequelize.STRING, allowNull: false },
   phone: { type: Sequelize.STRING, allowNull: false },
   isAdmin: { type: Sequelize.TINYINT, allowNull: true },
   createdAt: { type: Sequelize.DATE, allowNull: false, default: Date.now() },
