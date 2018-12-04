@@ -8,11 +8,23 @@ sequelizeInstance.define('bus', {
     allowNull: false,
     primaryKey: true
   },
-  startTime: {
-    type: Sequelize.DATE,
+  startPlaceID: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
-  endTime: {
+  endPlaceID: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  busID: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  busCompanyID: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  startTime: {
     type: Sequelize.DATE,
     allowNull: false
   },
@@ -20,16 +32,8 @@ sequelizeInstance.define('bus', {
     type: Sequelize.DATE,
     allowNull: false
   },
-  busID: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  seatNumber: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   status: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.TINYINT,
     allowNull: false
   }
 });
