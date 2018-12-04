@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Menu from '../Menu';
 import Footer from '../Footer';
-import BookingTicketComponent from '../BookingTicketComponent';
+import BookingTicketComponent from '../BookingInfo/BookingInfo';
 
 class BookingTicket extends Component {
   render() {

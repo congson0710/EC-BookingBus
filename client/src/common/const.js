@@ -1,7 +1,8 @@
 export const ROLE = {
   ADMIN: 0,
-  CLIENT: 1,
-  COMPANY: 2
+  GUEST: 1,
+  CLIENT: 2,
+  COMPANY: 3
 };
 
 export const TYPE_PAYMENT = {

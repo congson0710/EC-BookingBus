@@ -12,7 +12,7 @@ export const userModel = sequelizeInstance.define('user', {
   userPassword: { type: Sequelize.STRING, allowNull: false },
   userName: { type: Sequelize.STRING, allowNull: false },
   phone: { type: Sequelize.STRING, allowNull: false },
-  isAdmin: { type: Sequelize.TINYINT, allowNull: true },
+  roleID: { type: Sequelize.INTEGER, allowNull: false },
   createdAt: { type: Sequelize.DATE, allowNull: false, default: Date.now() },
   updatedAt: { type: Sequelize.DATE, allowNull: false, default: Date.now() }
 });

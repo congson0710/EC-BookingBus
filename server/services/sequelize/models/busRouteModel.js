@@ -8,8 +8,20 @@ sequelizeInstance.define('bus', {
     allowNull: false,
     primaryKey: true
   },
-  routeName: {
-    type: Sequelize.STRING,
+  startPlaceID: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  endPlaceID: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  day: {
+    type: Sequelize.DATE,
+    allowNull: false
+  },
+  busID: {
+    type: Sequelize.INTEGER,
     allowNull: false
   }
 });

@@ -2,9 +2,14 @@ import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
 
 import axios from '../../axios';
-import { formatActionType, isPost } from './utils';
+import { isPost, genActionTypes, genRequestConfig } from './utils';
 
-const thunkBody = async ({ dispatch, actionTypes, route, requestConfig }) => {
+const thunkBody = async ({
+  dispatch,
+  actionTypes,
+  route,
+  requestConfig = {}
+}) => {
   dispatch({
     type: get('request')(actionTypes)
   });
@@ -29,17 +34,6 @@ const thunkBody = async ({ dispatch, actionTypes, route, requestConfig }) => {
   }
 };
 
-const genActionTypes = action => ({
-  request: `${formatActionType(action)}_REQUEST`,
-  success: `${formatActionType(action)}_SUCCESS`,
-  fail: `${formatActionType(action)}_FAIL`
-});
-
-const genRequestConfig = (data, type) => ({
-  requestData: data,
-  requestType: type
-});
-
 const genParams = ({ dispatch, action, route, data, type }) => {
   const actionTypes = genActionTypes(action);
   const requestConfig = genRequestConfig(data, type);
@@ -55,3 +49,43 @@ export const thunkBodyCreator = flow(
   genParams,
   thunkBody
 );
+
+export const reducerCreator = (actionName, reducerPath) => {
+  const actionTypes = genActionTypes(actionName);
+
+  return (state = {}, action) => {
+    switch (action.type) {
+      case get('request')(actionTypes): {
+        return {
+          ...state,
+          [reducerPath]: {
+            ...get(reducerPath)(state),
+            isLoading: true
+          }
+        };
+      }
+      case get('success')(actionTypes): {
+        return {
+          ...state,
+          [reducerPath]: {
+            ...get(reducerPath)(state),
+            data: get('payload')(action),
+            isLoading: false
+          }
+        };
+      }
+      case get('fail')(actionTypes): {
+        return {
+          ...state,
+          [reducerPath]: {
+            ...get(reducerPath)(state),
+            error: get('payload')(action),
+            isLoading: false
+          }
+        };
+      }
+      default:
+        return state;
+    }
+  };
+};
