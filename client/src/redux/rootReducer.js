@@ -9,7 +9,7 @@ import {
 
 export const rootReducer = combineReducers({
   form: reduxFormReducer,
-  // userReducer,
+  userReducer,
   searchTicketReducer,
   fetchListTicketReducer
 });
