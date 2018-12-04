@@ -12,7 +12,7 @@ const PureRegisterForm = ({ handleSubmit }) => (
     <h1>Đăng kí</h1>
     <div>
       <Field
-        name="userName"
+        name="email"
         component={inputField}
         label="Tên đăng nhập"
         className={DEFAULT_CLASS_NAME}
@@ -42,16 +42,9 @@ const PureRegisterForm = ({ handleSubmit }) => (
         required
       />
       <Field
-        name="lastName"
+        name="userName"
         component={inputField}
-        label="Họ"
-        className={DEFAULT_CLASS_NAME}
-        required
-      />
-      <Field
-        name="firstName"
-        component={inputField}
-        label="Tên"
+        label="Họ và tên"
         className={DEFAULT_CLASS_NAME}
         required
       />

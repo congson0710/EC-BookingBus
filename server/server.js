@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import routes from './routes';
 import cors from 'cors';
 import { sequelizeInstance } from './services/sequelize';
 
@@ -18,6 +19,6 @@ sequelizeInstance
 
 app.use(bodyParser.json());
 
-require('./routes/userRoutes')(app);
+routes(app);
 
 app.listen(process.env.PORT || 5000);
