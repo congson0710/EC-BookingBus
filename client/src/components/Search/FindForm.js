@@ -7,6 +7,7 @@ import flow from 'lodash/fp/flow';
 import { connect } from 'react-redux';
 
 import inputField from './inputField';
+import selectField from './selectField';
 import { searchingThunkCreator } from '../../redux/actions/bookingAction';
 
 const FORM_NAME = 'EcBooking/SearchForm';
@@ -22,26 +23,26 @@ const PureSearchForm = ({ handleSubmit }) => (
         >
           <Field
             name="sourcePos"
-            component={inputField}
+            component={selectField}
             label="Điểm đi"
-            inputClassName="destination find_input"
+            className="destination find_input"
             required
-            placeholder="Nhập nơi đi"
-            type="text"
+            defaultValue={-1}
+            defaultLabel="Chọn điểm đi"
+          />
+          <Field
+            name="destinationPos"
+            component={selectField}
+            label="Điểm đến"
+            className="destination find_input"
+            required
+            defaultValue={-1}
+            defaultLabel="Chọn điểm đến"
           />
           <Field
             name="destinationPos"
             component={inputField}
-            label="Điểm đến"
-            inputClassName="destination find_input"
-            required
-            placeholder="Nhập nơi đến"
-            type="text"
-          />
-          <Field
-            name="destinationPos"
-            component={inputField}
-            label="Điểm đến"
+            label="Ngày đi"
             inputClassName="destination find_input unstyled"
             required
             placeholder="Chọn ngày đi"
