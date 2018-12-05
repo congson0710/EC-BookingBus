@@ -1,35 +1,32 @@
 import Sequelize from 'sequelize';
-import { sequelizeInstance } from '../index';
+import _ from 'lodash';
 
-sequelizeInstance.define('bus', {
+import { randomBusRouteID } from '../../../utils';
+import { sequelizeInstance } from '../index';
+import { faker } from '../../faker';
+
+export const ticketModel = sequelizeInstance.define('ticket', {
   ticketID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  startTime: {
-    type: Sequelize.DATE,
-    allowNull: false
-  },
-  endTime: {
-    type: Sequelize.DATE,
-    allowNull: false
-  },
-  day: {
-    type: Sequelize.DATE,
-    allowNull: false
-  },
-  busID: {
+  busRouteID: {
     type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  seatNumber: {
-    type: Sequelize.STRING,
     allowNull: false
   },
   status: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
   }
+});
+
+ticketModel.sync({ force: true }).then(() => {
+  _.times(1000, () => {
+    return ticketModel.create({
+      busRouteID: randomBusRouteID(),
+      status: faker.random.arrayElement(['SOLD', 'UNSOLD'])
+    });
+  });
 });

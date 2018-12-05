@@ -8,6 +8,5 @@ export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL';
 
 //booking
-export const SEARCH_TICKET_REQUEST = 'SEARCH_TICKET_REQUEST';
-export const SEARCH_TICKET_SUCCESS = 'SEARCH_TICKET_SUCCESS';
-export const SEARCH_TICKET_FAIL = 'SEARCH_TICKET_FAIL';
+export const SEARCH_TICKET = 'SearchTicket';
+export const FETCH_LIST_TICKET = 'FetchListTicket';

@@ -1,3 +1,11 @@
+import { userModel } from '../services/sequelize/models/userModel';
+import { ticketModel } from '../services/sequelize/models/ticketModel';
+import { roleModel } from '../services/sequelize/models/roleModel';
+import { placeModel } from '../services/sequelize/models/placeModel';
+import { busCompanyModel } from '../services/sequelize/models/busCompanyModel';
+import { busRouteModel } from '../services/sequelize/models/busRouteModel';
+import { busModel } from '../services/sequelize/models/busModel';
+
 const userRoute = app => {
   app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
@@ -9,15 +17,18 @@ const userRoute = app => {
 
   app.post('/api/register', (req, res) => {
     const { userName, userRole, password, reTypePassword } = req.body;
-    return res.status(200).json(req.body).end();
+    return res
+      .status(200)
+      .json(req.body)
+      .end();
   });
 
   app.post('/api/me', (req, res) => {
     const data = {
       userName: 'tien@gmail.com'
-    }
+    };
     return res.send(data).end();
-  })
+  });
 };
 
 export default userRoute;

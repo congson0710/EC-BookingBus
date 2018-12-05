@@ -10,3 +10,9 @@ Use method `thunkBodyCreator` and pass it an object under this format
   type: 'post' | 'get'
 }
 ```
+
+### To introduce a reducer
+Use method `reducerCreator` and pass it 2 params `actionName` and `reducerPath`.
+`actionName` is the name of an action that this reducer takes care.
+`reducerPath` path to the state in initial state.
+ - Example: ```const userReducer = reducerCreator('GetUser', 'EcBooking/GET_USER')```

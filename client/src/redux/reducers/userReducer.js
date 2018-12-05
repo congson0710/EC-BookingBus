@@ -44,6 +44,6 @@ export const userReducer = (state = initialState, action) => {
       };
     }
     default:
-      break;
+      return state;
   }
 };
