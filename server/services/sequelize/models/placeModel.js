@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { sequelizeInstance } from '../index';
 
-sequelizeInstance.define('place', {
+export const placeModel = sequelizeInstance.define('place', {
   placeID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -12,4 +12,25 @@ sequelizeInstance.define('place', {
     type: Sequelize.STRING,
     allowNull: false
   }
+});
+
+const places = [
+  'Tp Hồ Chí Minh',
+  'Đà Lạt',
+  'Nha Trang',
+  'Đà Nẵng',
+  'Quy Nhơn',
+  'Phú Yên',
+  'Bình Định',
+  'Tuy Hòa',
+  'Cà Mau',
+  'Huế'
+];
+
+placeModel.sync({ force: true }).then(() => {
+  places.forEach(place => {
+    return placeModel.create({
+      placeName: place
+    });
+  });
 });

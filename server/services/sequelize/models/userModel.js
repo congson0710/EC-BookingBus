@@ -1,5 +1,9 @@
 import Sequelize from 'sequelize';
+import _ from 'lodash';
+
 import { sequelizeInstance } from '../index';
+import { faker } from '../../faker';
+import { randomRoleID } from '../../../utils';
 
 export const userModel = sequelizeInstance.define('user', {
   userID: {
@@ -12,7 +16,17 @@ export const userModel = sequelizeInstance.define('user', {
   userPassword: { type: Sequelize.STRING, allowNull: false },
   userName: { type: Sequelize.STRING, allowNull: false },
   phone: { type: Sequelize.STRING, allowNull: false },
-  roleID: { type: Sequelize.INTEGER, allowNull: false },
-  createdAt: { type: Sequelize.DATE, allowNull: false, default: Date.now() },
-  updatedAt: { type: Sequelize.DATE, allowNull: false, default: Date.now() }
+  roleID: { type: Sequelize.INTEGER, allowNull: false }
+});
+
+userModel.sync({ force: true }).then(() => {
+  _.times(100, () => {
+    return userModel.create({
+      email: faker.internet.email(),
+      userPassword: faker.internet.password(),
+      userName: faker.name.findName(),
+      phone: faker.phone.phoneNumberFormat(),
+      roleID: randomRoleID()
+    });
+  });
 });
