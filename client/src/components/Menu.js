@@ -25,7 +25,7 @@ class Menu extends Component {
                   <NavLink activeClassName="active" exact to="/">Trang chủ</NavLink>
                 </li>
                 <li className="main_nav_item">
-                  <a href="/">Kiểm tra vé</a>
+                  <a href="/kiem-tra-ve">Kiểm tra vé</a>
                 </li>
                 <li className="main_nav_item">
                   <a href="/">Liên hệ</a>

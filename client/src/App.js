@@ -6,6 +6,7 @@ import LoginPage from './components/pages/Login';
 import RegisterPage from './components/pages/Register';
 import ListTicketPage from './components/pages/ListTicket';
 import BookingTicket from './components/pages/BookingTicket';
+import CheckTicket from './components/pages/CheckTicket';
 import Payment from './components/pages/Payment';
 
 
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/dang-ki" component={RegisterPage} />
           <Route path="/danh-sach-ve-xe" component={ListTicketPage} />
           <Route path="/dat-ve" component={BookingTicket} />
+          <Route path="/kiem-tra-ve" component={CheckTicket} />
           <Route path="/thanh-toan" component={Payment} />
         </React.Fragment>
       </Router>

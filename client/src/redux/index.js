@@ -5,7 +5,6 @@ import logger from 'redux-logger';
 import { rootReducer } from './rootReducer';
 
 const initialState = {
-  testState: 'test'
 };
 
 export const store = createStore(
