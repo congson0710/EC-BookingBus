@@ -4,10 +4,6 @@ import routes from './routes';
 import cors from 'cors';
 import { sequelizeInstance } from './services/sequelize';
 
-const app = express();
-
-app.use(cors());
-
 sequelizeInstance
   .authenticate()
   .then(() => {
@@ -16,6 +12,10 @@ sequelizeInstance
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
+const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
