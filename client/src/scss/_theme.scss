@@ -147,6 +147,9 @@ h6::selection {
 .form-control {
   color: #db5246;
 }
+button {
+  outline: none!important;
+}
 section {
   display: block;
   position: relative;
@@ -1929,4 +1932,16 @@ section {
 .edit-profile {
   padding: 40px;
   background: rgba(#000, 0.3);
+}
+
+.ant-tabs-nav {
+  .ant-tabs-tab {
+    color: #fff;
+    &.ant-tabs-tab-active, &:hover {
+      color: #fe435b;
+    }
+  }
+}
+.ant-tabs-ink-bar {
+  background: #fe435b;
 }
