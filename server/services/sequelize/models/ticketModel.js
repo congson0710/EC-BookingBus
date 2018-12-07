@@ -22,11 +22,11 @@ export const ticketModel = sequelizeInstance.define('ticket', {
   }
 });
 
-export const createTicketTable = ticketModel.sync({ force: false }).then(() => {
-  _.times(1000, () => {
-    return ticketModel.create({
-      busRouteID: randomBusRouteID(),
-      status: faker.random.arrayElement(['SOLD', 'UNSOLD'])
-    });
-  });
-});
+// export const createTicketTable = ticketModel.sync({ force: false }).then(() => {
+//   _.times(1000, () => {
+//     return ticketModel.create({
+//       busRouteID: randomBusRouteID(),
+//       status: faker.random.arrayElement(['SOLD', 'UNSOLD'])
+//     });
+//   });
+// });

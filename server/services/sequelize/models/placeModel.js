@@ -27,10 +27,10 @@ const places = [
   'Huế'
 ];
 
-export const createPlaceTable = placeModel.sync({ force: false }).then(() => {
-  places.forEach(place => {
-    return placeModel.create({
-      placeName: place
-    });
-  });
-});
+// export const createPlaceTable = placeModel.sync({ force: false }).then(() => {
+//   places.forEach(place => {
+//     return placeModel.create({
+//       placeName: place
+//     });
+//   });
+// });

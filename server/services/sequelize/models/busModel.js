@@ -21,11 +21,11 @@ export const busModel = sequelizeInstance.define('bus', {
   }
 });
 
-export const createBusTable = busModel.sync({ force: false }).then(() => {
-  _.times(100, () => {
-    return busModel.create({
-      busCompanyID: randomBusCompanyID(),
-      totalSeat: 30
-    });
-  });
-});
+// export const createBusTable = busModel.sync({ force: false }).then(() => {
+//   _.times(100, () => {
+//     return busModel.create({
+//       busCompanyID: randomBusCompanyID(),
+//       totalSeat: 30
+//     });
+//   });
+// });
