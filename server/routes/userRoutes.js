@@ -1,8 +1,10 @@
 const userRoute = app => {
-  app.post('/api/login', (req, res) => {
+  app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
-    if (email === 'tien@gmail.com' && password === '123123') {
-      return res.status(200).end();
+    const user = await userModel.findOne({ where: { email } });
+    console.log('>>>>>>',user);
+    if (user) {
+      return res.status(200).json(user).end();
     }
     return res.status(401).end();
   });
