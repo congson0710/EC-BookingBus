@@ -19,14 +19,14 @@ export const userModel = sequelizeInstance.define('user', {
   roleID: { type: Sequelize.INTEGER, allowNull: false }
 });
 
-export const createUserTable = userModel.sync({ force: false }).then(() => {
-  _.times(100, () => {
-    return userModel.create({
-      email: faker.internet.email(),
-      userPassword: faker.internet.password(),
-      userName: faker.name.findName(),
-      phone: faker.phone.phoneNumberFormat(),
-      roleID: randomRoleID()
-    });
-  });
-});
+// export const createUserTable = userModel.sync({ force: false }).then(() => {
+//   _.times(100, () => {
+//     return userModel.create({
+//       email: faker.internet.email(),
+//       userPassword: faker.internet.password(),
+//       userName: faker.name.findName(),
+//       phone: faker.phone.phoneNumberFormat(),
+//       roleID: randomRoleID()
+//     });
+//   });
+// });
