@@ -1,12 +1,11 @@
+import { userModel } from '../services/sequelize/models/userModel';
+import passport from 'passport';
+
 const userRoute = app => {
-  app.post('/api/login', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await userModel.findOne({ where: { email } });
-    console.log('>>>>>>',user);
-    if (user) {
-      return res.status(200).json(user).end();
-    }
-    return res.status(401).end();
+  app.post('/api/login', passport.authenticate('local'), (req, res) => {
+    const user = req.user;
+    const { id, email, userName, phone, roleID } = user;
+    return res.json({ id, email, userName, phone, roleID });
   });
 
   app.post('/api/register', (req, res) => {
