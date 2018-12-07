@@ -1,6 +1,6 @@
 import { placeModel } from '../services/sequelize/models/placeModel';
 
-export const placeRoutes = app => {
+const placeRoutes = app => {
   app.get('/api/list-place', async (_, res) => {
     try {
       const result = await placeModel.findAll();
@@ -10,3 +10,5 @@ export const placeRoutes = app => {
     }
   });
 };
+
+export default placeRoutes;
