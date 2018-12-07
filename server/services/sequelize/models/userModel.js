@@ -19,7 +19,7 @@ export const userModel = sequelizeInstance.define('user', {
   roleID: { type: Sequelize.INTEGER, allowNull: false }
 });
 
-userModel.sync({ force: true }).then(() => {
+export const createUserTable = userModel.sync({ force: false }).then(() => {
   _.times(100, () => {
     return userModel.create({
       email: faker.internet.email(),

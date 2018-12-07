@@ -2,7 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './routes';
 import cors from 'cors';
+
 import { sequelizeInstance } from './services/sequelize';
+// import { isDataBaseNotCreated, createDataBase } from './utils';
 
 sequelizeInstance
   .authenticate()

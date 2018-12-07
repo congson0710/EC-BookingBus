@@ -42,15 +42,17 @@ export const busRouteModel = sequelizeInstance.define('bus_route', {
   }
 });
 
-busRouteModel.sync({ force: true }).then(() => {
-  _.times(100, () => {
-    return busRouteModel.create({
-      startPlaceID: randomPlaceID(),
-      endPlaceID: randomPlaceID(),
-      seatNumber: randomSeatNumber(),
-      startTime: randomDayAndTime().time,
-      day: randomDayAndTime().day,
-      busID: randomBusID()
+export const createBusRouteTable = busRouteModel
+  .sync({ force: false })
+  .then(() => {
+    _.times(100, () => {
+      return busRouteModel.create({
+        startPlaceID: randomPlaceID(),
+        endPlaceID: randomPlaceID(),
+        seatNumber: randomSeatNumber(),
+        startTime: randomDayAndTime().time,
+        day: randomDayAndTime().day,
+        busID: randomBusID()
+      });
     });
   });
-});

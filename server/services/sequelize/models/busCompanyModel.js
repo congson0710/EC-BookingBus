@@ -24,10 +24,12 @@ const companys = [
   'Hưng Thành'
 ];
 
-busCompanyModel.sync({ force: true }).then(() => {
-  companys.forEach(company => {
-    busCompanyModel.create({
-      companyName: company
+export const createBusCompanyTable = busCompanyModel
+  .sync({ force: false })
+  .then(() => {
+    companys.forEach(company => {
+      busCompanyModel.create({
+        companyName: company
+      });
     });
   });
-});

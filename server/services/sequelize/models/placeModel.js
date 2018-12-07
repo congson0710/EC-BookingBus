@@ -27,7 +27,7 @@ const places = [
   'Huế'
 ];
 
-placeModel.sync({ force: true }).then(() => {
+export const createPlaceTable = placeModel.sync({ force: false }).then(() => {
   places.forEach(place => {
     return placeModel.create({
       placeName: place
