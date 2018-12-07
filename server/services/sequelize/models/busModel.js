@@ -21,7 +21,7 @@ export const busModel = sequelizeInstance.define('bus', {
   }
 });
 
-busModel.sync({ force: true }).then(() => {
+export const createBusTable = busModel.sync({ force: false }).then(() => {
   _.times(100, () => {
     return busModel.create({
       busCompanyID: randomBusCompanyID(),

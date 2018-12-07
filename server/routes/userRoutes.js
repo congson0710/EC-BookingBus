@@ -1,11 +1,3 @@
-import { userModel } from '../services/sequelize/models/userModel';
-import { ticketModel } from '../services/sequelize/models/ticketModel';
-import { roleModel } from '../services/sequelize/models/roleModel';
-import { placeModel } from '../services/sequelize/models/placeModel';
-import { busCompanyModel } from '../services/sequelize/models/busCompanyModel';
-import { busRouteModel } from '../services/sequelize/models/busRouteModel';
-import { busModel } from '../services/sequelize/models/busModel';
-
 const userRoute = app => {
   app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
