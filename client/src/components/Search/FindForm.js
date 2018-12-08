@@ -3,12 +3,14 @@ import { reduxForm, Field } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import compose from 'recompose/compose';
 import mapProps from 'recompose/mapProps';
+import lifecycle from 'recompose/lifecycle';
 import flow from 'lodash/fp/flow';
 import { connect } from 'react-redux';
 
 import inputField from './inputField';
 import selectField from './selectField';
 import { searchingThunkCreator } from '../../redux/actions/bookingAction';
+import { fetchListPlaceThunkCreator } from '../../redux/actions/searchingAction';
 
 const FORM_NAME = 'EcBooking/SearchForm';
 
@@ -61,9 +63,19 @@ const connnectToRedux = connect(
     onSearchRequest: flow(
       searchingThunkCreator,
       dispatch
+    ),
+    fetchListPlace: flow(
+      fetchListPlaceThunkCreator,
+      dispatch
     )
   })
 );
+
+const withLifeCycleHOC = lifecycle({
+  componentDidMount() {
+    this.props.fetchListPlace();
+  }
+});
 
 const prepareProps = mapProps(
   ({ onSearchRequest, history, ...otherProps }) => ({
@@ -81,6 +93,7 @@ const enhance = compose(
   withRouter,
   connnectToRedux,
   prepareProps,
+  withLifeCycleHOC,
   withReduxForm
 );
 

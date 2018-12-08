@@ -14,18 +14,18 @@ export const busCompanyModel = sequelizeInstance.define('bus_company', {
   }
 });
 
-const companys = [
-  'Thành Bưởi',
-  'Phương Trang',
-  'Hoàng Long',
-  'Mai Linh',
-  'Hưng Long',
-  'Hồng Hải',
-  'Hưng Thành'
-];
+// const companys = [
+//   'Thành Bưởi',
+//   'Phương Trang',
+//   'Hoàng Long',
+//   'Mai Linh',
+//   'Hưng Long',
+//   'Hồng Hải',
+//   'Hưng Thành'
+// ];
 
 // export const createBusCompanyTable = busCompanyModel
-//   .sync({ force: false })
+//   .sync({ force: true })
 //   .then(() => {
 //     companys.forEach(company => {
 //       busCompanyModel.create({
