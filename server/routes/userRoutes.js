@@ -1,11 +1,14 @@
-import { userModel } from '../services/sequelize/models/userModel';
 import passport from 'passport';
 
 const userRoute = app => {
   app.post('/api/login', passport.authenticate('local'), (req, res) => {
     const user = req.user;
-    const { id, email, userName, phone, roleID } = user;
-    return res.json({ id, email, userName, phone, roleID });
+    if (user) {
+      const { userPassword, ...rest } = user;
+
+      return res.json({ ...rest, message: 'Login successfully!' });
+    }
+    return res.status(401).json({ message: 'Incorrect email or password.' });
   });
 
   app.post('/api/register', (req, res) => {

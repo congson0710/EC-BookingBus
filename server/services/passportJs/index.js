@@ -15,16 +15,22 @@ passport.use(
   new LocalStrategy(
     {
       usernameField: 'email',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
+      failureRedirect: '/api/login-failure'
     },
     async (email, password, done) => {
-      const currentUser = await Users.findOne({
-        where: { email, userPassword: password }
-      });
-      if (currentUser) {
-        return done(null, currentUser);
-      } else {
-        return done(null, false, { message: 'Invalid username or password.' });
+      try {
+        const currentUser = await Users.findOne({
+          where: { email, userPassword: password },
+          raw: true
+        });
+        if (currentUser) {
+          return done(null, currentUser);
+        } else {
+          return done(null, false);
+        }
+      } catch (error) {
+        return done(error);
       }
     }
   )

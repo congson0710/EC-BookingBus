@@ -1,4 +1,5 @@
 import axios from '../../axios';
+import { history } from '../index';
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -42,6 +43,7 @@ export const loginThunkCreator = loginData => async dispatch => {
         type: USER_LOGIN_SUCCESS,
         payload: response.data
       });
+      history.push('/');
     }
   } catch (error) {
     dispatch({
