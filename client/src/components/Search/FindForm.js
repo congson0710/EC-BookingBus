@@ -3,18 +3,18 @@ import { reduxForm, Field } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import compose from 'recompose/compose';
 import mapProps from 'recompose/mapProps';
-import lifecycle from 'recompose/lifecycle';
 import flow from 'lodash/fp/flow';
 import { connect } from 'react-redux';
 
+import StartPlaceField from './StartPlaceField';
+import EndPlaceField from './EndPlaceField';
 import inputField from './inputField';
-import selectField from './selectField';
 import { searchingThunkCreator } from '../../redux/actions/bookingAction';
-import { fetchListPlaceThunkCreator } from '../../redux/actions/searchingAction';
+import { reFetchPlaceThunkCreator } from '../../redux/actions/searchingAction';
 
 const FORM_NAME = 'EcBooking/SearchForm';
 
-const PureSearchForm = ({ handleSubmit }) => (
+const PureSearchForm = ({ handleSubmit, initOptions, reFetchListPlace }) => (
   <div className="find">
     <div className="container">
       <h1 className="find_title text-center">Tìm vé xe</h1>
@@ -24,22 +24,34 @@ const PureSearchForm = ({ handleSubmit }) => (
           onSubmit={handleSubmit}
         >
           <Field
-            name="sourcePos"
-            component={selectField}
+            name="startPlace"
+            component={StartPlaceField}
             label="Điểm đi"
             className="destination find_input"
             required
             defaultValue={-1}
             defaultLabel="Chọn điểm đi"
+            onChange={(_, value, previousValue, name) => {
+              reFetchListPlace({
+                filteredListPlace: { placeID: value },
+                nameField: name
+              });
+            }}
           />
           <Field
-            name="destinationPos"
-            component={selectField}
+            name="endPlace"
+            component={EndPlaceField}
             label="Điểm đến"
             className="destination find_input"
             required
             defaultValue={-1}
             defaultLabel="Chọn điểm đến"
+            onChange={(_, value, previousValue, name) => {
+              reFetchListPlace({
+                filteredListPlace: { placeID: value },
+                nameField: name
+              });
+            }}
           />
           <Field
             name="destinationPos"
@@ -64,18 +76,12 @@ const connnectToRedux = connect(
       searchingThunkCreator,
       dispatch
     ),
-    fetchListPlace: flow(
-      fetchListPlaceThunkCreator,
+    reFetchListPlace: flow(
+      reFetchPlaceThunkCreator,
       dispatch
     )
   })
 );
-
-const withLifeCycleHOC = lifecycle({
-  componentDidMount() {
-    this.props.fetchListPlace();
-  }
-});
 
 const prepareProps = mapProps(
   ({ onSearchRequest, history, ...otherProps }) => ({
@@ -93,7 +99,6 @@ const enhance = compose(
   withRouter,
   connnectToRedux,
   prepareProps,
-  withLifeCycleHOC,
   withReduxForm
 );
 
