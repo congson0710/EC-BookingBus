@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 
 import Home from './components/pages/Home';
 import EditProfile from './components/pages/EditProfile';
@@ -10,13 +10,13 @@ import BookingTicket from './components/pages/BookingTicket';
 import CheckTicket from './components/pages/CheckTicket';
 import BusRouteManagement from './components/pages/BusRouteManagement';
 import Payment from './components/pages/Payment';
-
+import { history } from './redux';
 
 import './App.scss';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <React.Fragment>
           <Route exact path="/" component={Home} />
           <Route exact path="/chinh-sua-thong-tin" component={EditProfile} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { withRouter } from 'react-router-dom';
 import Menu from '../Menu';
 import Footer from '../Footer';
 import LoginForm from '../Login/LoginForm';
@@ -17,4 +17,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
