@@ -2,8 +2,6 @@ import Sequelize from 'sequelize';
 import _ from 'lodash';
 
 import { sequelizeInstance } from '../index';
-import { faker } from '../../faker';
-import { randomRoleID } from '../../../utils';
 
 export const userModel = sequelizeInstance.define('user', {
   userID: {
