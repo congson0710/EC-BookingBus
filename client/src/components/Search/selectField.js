@@ -8,8 +8,7 @@ const PureSelect = ({
   label,
   input,
   options = [],
-  required = false,
-  onChange
+  required = false
 }) => (
   <div className="find_item">
     <div className="text-left">{label}</div>
@@ -17,7 +16,7 @@ const PureSelect = ({
       defaultValue={defaultValue}
       required={required}
       className={className}
-      onChange={onChange || get('onChange')(input)}
+      onChange={get('onChange')(input)}
     >
       <option value={-1} disabled>
         {defaultLabel}

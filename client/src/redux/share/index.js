@@ -2,7 +2,12 @@ import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
 
 import axios from '../../axios';
-import { isPost, genActionTypes, genRequestConfig } from './utils';
+import {
+  isPost,
+  genActionTypes,
+  genRequestConfig,
+  genReducerPath
+} from './utils';
 
 const thunkBody = async ({
   dispatch,
@@ -104,9 +109,13 @@ export const reducerCreator = (reducerName, reducerPath) => {
   };
 };
 
-export const rawDataSelectorCreator = reducerPath => state =>
+export const rawDataSelectorCreator = (
+  reducerName,
+  reducerSectionName
+) => state =>
   flow(
-    get(reducerPath),
-    get(reducerPath),
+    get(reducerName),
+    get(reducerSectionName),
+    get(genReducerPath(reducerSectionName)),
     get('data')
   )(state);
