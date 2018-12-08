@@ -1,5 +1,5 @@
 import userRoute from './userRoutes';
-import { placeRoutes } from './placeRoutes';
+import placeRoutes from './placeRoutes';
 
 const routes = app => {
   userRoute(app);

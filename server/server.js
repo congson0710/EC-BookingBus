@@ -2,9 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './routes';
 import cors from 'cors';
-
+import passport from 'passport';
 import { sequelizeInstance } from './services/sequelize';
 // import { isDataBaseNotCreated, createDataBase } from './utils';
+import './services/passportJs';
 
 sequelizeInstance
   .authenticate()
@@ -18,6 +19,7 @@ sequelizeInstance
 const app = express();
 
 app.use(cors());
+app.use(passport.initialize());
 
 app.use(bodyParser.json());
 
