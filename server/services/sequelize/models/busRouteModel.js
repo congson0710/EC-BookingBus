@@ -43,7 +43,7 @@ export const busRouteModel = sequelizeInstance.define('bus_route', {
 });
 
 // export const createBusRouteTable = busRouteModel
-//   .sync({ force: false })
+//   .sync({ force: true })
 //   .then(() => {
 //     _.times(100, () => {
 //       return busRouteModel.create({

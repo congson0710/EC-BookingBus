@@ -16,7 +16,7 @@ export const roleModel = sequelizeInstance.define('role', {
 
 const roles = ['ADMIN', 'USER', 'GUEST', 'BUS_COMPANY'];
 
-// export const createRoleTable = roleModel.sync({ force: false }).then(() => {
+// export const createRoleTable = roleModel.sync({ force: true }).then(() => {
 //   roles.forEach(role => {
 //     return roleModel.create({
 //       roleName: role
