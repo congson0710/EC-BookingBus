@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
+import get from 'lodash/fp/get';
 
 import { userReducer } from './reducers/userReducer';
 import bookingReducerPaths, {
@@ -18,7 +19,7 @@ import {
 export const rootReducer = combineReducers({
   form: reduxFormReducer,
   userReducer,
-  [bookingReducerPaths[SEARCH_TICKET]]: searchTicketReducer,
-  [bookingReducerPaths[FETCH_LIST_TICKET]]: fetchListTicketReducer,
-  [searchingReducerPaths[FETCH_LIST_PLACE]]: fetchListPlaceReducer
+  [get(SEARCH_TICKET)(bookingReducerPaths)]: searchTicketReducer,
+  [get(FETCH_LIST_TICKET)(bookingReducerPaths)]: fetchListTicketReducer,
+  [get(FETCH_LIST_PLACE)(searchingReducerPaths)]: fetchListPlaceReducer
 });
