@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import get from 'lodash/fp/get';
 
 const PureSelect = ({
@@ -7,7 +7,7 @@ const PureSelect = ({
   className,
   label,
   input,
-  dataSource,
+  dataSource = [],
   required = false
 }) => (
   <div className="find_item">
@@ -18,11 +18,14 @@ const PureSelect = ({
       className={className}
       onChange={get('onChange')(input) || get('value')(input)}
     >
-      <option value={-1} disabled>{defaultLabel}</option>
-      {dataSource &&
-        dataSource.map(item => (
-          <option value={item.value}>{item.label}</option>
-        ))}
+      <option value={-1} disabled>
+        {defaultLabel}
+      </option>
+      {dataSource.map(place => (
+        <option key={place.placeID} value={place.placeID}>
+          {place.placeName}
+        </option>
+      ))}
     </select>
   </div>
 );

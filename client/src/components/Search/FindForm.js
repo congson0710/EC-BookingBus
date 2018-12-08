@@ -11,10 +11,11 @@ import inputField from './inputField';
 import selectField from './selectField';
 import { searchingThunkCreator } from '../../redux/actions/bookingAction';
 import { fetchListPlaceThunkCreator } from '../../redux/actions/searchingAction';
+import { fetchListPlaceDataSelector } from '../../redux/selectors/searchingSelectors';
 
 const FORM_NAME = 'EcBooking/SearchForm';
 
-const PureSearchForm = ({ handleSubmit }) => (
+const PureSearchForm = ({ handleSubmit, listPlace }) => (
   <div className="find">
     <div className="container">
       <h1 className="find_title text-center">Tìm vé xe</h1>
@@ -31,6 +32,7 @@ const PureSearchForm = ({ handleSubmit }) => (
             required
             defaultValue={-1}
             defaultLabel="Chọn điểm đi"
+            dataSource={listPlace}
           />
           <Field
             name="destinationPos"
@@ -40,6 +42,7 @@ const PureSearchForm = ({ handleSubmit }) => (
             required
             defaultValue={-1}
             defaultLabel="Chọn điểm đến"
+            dataSource={listPlace}
           />
           <Field
             name="destinationPos"
@@ -58,7 +61,9 @@ const PureSearchForm = ({ handleSubmit }) => (
 );
 
 const connnectToRedux = connect(
-  null,
+  state => ({
+    listPlace: fetchListPlaceDataSelector(state)
+  }),
   dispatch => ({
     onSearchRequest: flow(
       searchingThunkCreator,
