@@ -20,7 +20,7 @@ const PureLoginForm = ({ handleSubmit }) => (
       <h1>Đăng nhập</h1>
       <form onSubmit={handleSubmit}>
         <Field
-          name="userName"
+          name="email"
           component={inputField}
           label="Tên đăng nhập"
           inputClassName={classNames.input}

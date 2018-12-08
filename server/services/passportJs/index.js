@@ -1,7 +1,6 @@
 import passport from 'passport';
 const LocalStrategy = require('passport-local').Strategy;
 import { userModel as Users } from '../sequelize/models/userModel';
-
 passport.serializeUser((user, done) => {
   done(null, user.userID);
 });
@@ -15,12 +14,12 @@ passport.deserializeUser((user, done) => {
 passport.use(
   new LocalStrategy(
     {
-      usernameField: 'userName',
+      usernameField: 'email',
       passwordField: 'userPassword'
     },
-    async (username, password, done) => {
+    async (email, password, done) => {
       const currentUser = await Users.findOne({
-        where: { userName: username, userPassword: password }
+        where: { email, userPassword: password }
       });
       if (currentUser) {
         return done(null, currentUser);
