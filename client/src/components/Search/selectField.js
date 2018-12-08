@@ -7,7 +7,7 @@ const PureSelect = ({
   className,
   label,
   input,
-  dataSource = [],
+  options = [],
   required = false
 }) => (
   <div className="find_item">
@@ -16,12 +16,12 @@ const PureSelect = ({
       defaultValue={defaultValue}
       required={required}
       className={className}
-      onChange={get('onChange')(input) || get('value')(input)}
+      onChange={get('onChange')(input)}
     >
       <option value={-1} disabled>
         {defaultLabel}
       </option>
-      {dataSource.map(place => (
+      {options.map(place => (
         <option key={place.placeID} value={place.placeID}>
           {place.placeName}
         </option>

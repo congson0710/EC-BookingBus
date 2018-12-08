@@ -32,7 +32,7 @@ const PureSearchForm = ({ handleSubmit, listPlace }) => (
             required
             defaultValue={-1}
             defaultLabel="Chọn điểm đi"
-            dataSource={listPlace}
+            options={listPlace}
           />
           <Field
             name="destinationPos"
@@ -42,7 +42,7 @@ const PureSearchForm = ({ handleSubmit, listPlace }) => (
             required
             defaultValue={-1}
             defaultLabel="Chọn điểm đến"
-            dataSource={listPlace}
+            options={listPlace}
           />
           <Field
             name="destinationPos"
