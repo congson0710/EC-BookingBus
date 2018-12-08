@@ -2,12 +2,7 @@ import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
 
 import axios from '../../axios';
-import {
-  isPost,
-  genActionTypes,
-  genRequestConfig,
-  genReducerPath
-} from './utils';
+import { isPost, genActionTypes, genRequestConfig } from './utils';
 
 const thunkBody = async ({
   dispatch,
@@ -50,13 +45,18 @@ const genParams = ({ dispatch, action, route, data, type }) => {
   };
 };
 
+export const setRawDataActionCreator = action => payload => ({
+  type: action,
+  payload
+});
+
 export const thunkBodyCreator = flow(
   genParams,
   thunkBody
 );
 
-export const reducerCreator = (actionName, reducerPath) => {
-  const actionTypes = genActionTypes(actionName);
+export const reducerCreator = (reducerName, reducerPath) => {
+  const actionTypes = genActionTypes(reducerName);
 
   return (state = {}, action) => {
     switch (action.type) {
@@ -86,6 +86,15 @@ export const reducerCreator = (actionName, reducerPath) => {
             ...get(reducerPath)(state),
             error: get('payload')(action),
             isLoading: false
+          }
+        };
+      }
+      case get('set')(actionTypes): {
+        return {
+          ...state,
+          [reducerPath]: {
+            ...get(reducerPath)(state),
+            data: get('payload')(action)
           }
         };
       }

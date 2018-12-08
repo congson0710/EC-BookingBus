@@ -33,6 +33,11 @@ const PureSearchForm = ({ handleSubmit, listPlace }) => (
             defaultValue={-1}
             defaultLabel="Chọn điểm đi"
             options={listPlace}
+            onChange={(_, value) => {
+              const filteredPlaceList = listPlace.filter(
+                place => place.placeID.toString() !== value
+              );
+            }}
           />
           <Field
             name="destinationPos"
@@ -43,6 +48,11 @@ const PureSearchForm = ({ handleSubmit, listPlace }) => (
             defaultValue={-1}
             defaultLabel="Chọn điểm đến"
             options={listPlace}
+            onChange={(_, value) => {
+              const filteredPlaceList = listPlace.filter(
+                place => place.placeID.toString() !== value
+              );
+            }}
           />
           <Field
             name="destinationPos"

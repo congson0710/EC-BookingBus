@@ -13,3 +13,4 @@ export const FETCH_LIST_TICKET = 'FETCH_LIST_TICKET';
 
 //searching
 export const FETCH_LIST_PLACE = 'FETCH_LIST_PLACE';
+export const SET_LIST_PLACE = 'SET_LIST_PLACE';

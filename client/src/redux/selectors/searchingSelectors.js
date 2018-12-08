@@ -2,8 +2,8 @@ import get from 'lodash/fp/get';
 
 import { rawDataSelectorCreator } from '../share';
 import searchingReducerPaths from '../reducers/searchingReducer';
-import { FETCH_LIST_PLACE } from '../actions/actionsTypes';
+import { LIST_PLACE } from '../reducers/_reducerNames';
 
 export const fetchListPlaceDataSelector = rawDataSelectorCreator(
-  get(FETCH_LIST_PLACE)(searchingReducerPaths)
+  get(LIST_PLACE)(searchingReducerPaths)
 );
