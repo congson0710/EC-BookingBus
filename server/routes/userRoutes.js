@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { userModel } from '../services/sequelize/models/userModel';
 import { JWT } from '../config';
+import { getIdFromToken } from '../utils/auth';
 
 const userRoute = app => {
   app.post('/api/login', async (req, res) => {
@@ -12,7 +13,7 @@ const userRoute = app => {
       });
       if (currentUser) {
         const { userPassword, ...rest } = currentUser;
-        const token = jwt.sign({ userID: currentUser.userID}, JWT.secret);
+        const token = jwt.sign({ userID: currentUser.userID }, JWT.secret);
         return res.json({ ...rest, token, message: 'Login successfully!' });
       }
       return res.status(401).json({ message: 'Incorrect email or password.' });
@@ -29,11 +30,18 @@ const userRoute = app => {
       .end();
   });
 
-  app.post('/api/me', (req, res) => {
-    const data = {
-      userName: 'tien@gmail.com'
-    };
-    return res.send(data).end();
+  app.post('/api/me', getIdFromToken, async (req, res) => {
+    const { userID } = req.userID;
+    try {
+      const user = await userModel.findOne({
+        where: { userID },
+        raw: true
+      });
+      const { userPassword, ...rest } = user;
+      return res.json(rest).end();
+    } catch (error) {
+      return res.status(403).send('Unauthorize!').end();
+    }
   });
 };
 
