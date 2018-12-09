@@ -24,9 +24,8 @@ class App extends Component {
       const currentToken = localStorage.getItem('token') || '';
       setToken(currentToken);
       this.userInfo = await Auth.getUserInfo();
-      this.userRole = this.userInfo.roleID;
     } catch (err) {
-      this.userRole = ROLE.GUEST;
+      console.log(err);
     }
   }
   render() {

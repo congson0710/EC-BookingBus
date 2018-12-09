@@ -3,7 +3,8 @@ import get from 'lodash/fp/get';
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
-  USER_REGISTER_FAIL
+  USER_REGISTER_FAIL,
+  LOGOUT
 } from '../actions/actionsTypes';
 
 const initialState = {
@@ -42,6 +43,11 @@ export const userReducer = (state = initialState, action) => {
           error: get('payload')(action)
         }
       };
+    }
+    case LOGOUT: {
+      return {
+        ...state
+      }
     }
     default:
       return state;

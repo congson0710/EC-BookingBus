@@ -1,5 +1,6 @@
-import axios from '../axios';
+import axios, { removeToken } from '../axios';
 import { ROLE } from '../common/const';
+import { history } from '../redux/index';
 
 export default class Auth {
   static async getUserInfo() {
@@ -12,5 +13,10 @@ export default class Auth {
   }
   static getUserRole() {
     return parseInt(localStorage.getItem('role')) || ROLE.GUEST;
+  }
+  static logout() {
+    localStorage.clear();
+    removeToken();
+    history.push('/');
   }
 }

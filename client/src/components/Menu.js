@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import MenuAuthorization from './AuthHOC/MenuAuthorization';
 import Logo from '../images/logo.png';
 import { ROLE } from '../common/const';
+import { logoutThunkCreator } from '../redux/actions/userAction';
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onLogoutRequest: () => dispatch(logoutThunkCreator())
+  };
+}
 class Menu extends Component {
+  _logout = () => {
+    this.props.onLogoutRequest();
+  }
   render() {
     return (
       <header className="header">
@@ -66,8 +76,10 @@ class Menu extends Component {
                   </MenuAuthorization>
                 </li>
                 <li className="main_nav_item">
-                  <MenuAuthorization roleAllowed={[ROLE.COMPANY, ROLE.CLIENT, ROLE.ADMIN]}>
-                    <a href="">Đăng xuất</a>
+                  <MenuAuthorization
+                    roleAllowed={[ROLE.COMPANY, ROLE.CLIENT, ROLE.ADMIN]}
+                  >
+                    <button onClick={this._logout}>Đăng xuất</button>
                   </MenuAuthorization>
                 </li>
               </ul>
@@ -79,4 +91,7 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+export default connect(
+  null,
+  mapDispatchToProps
+)(Menu);

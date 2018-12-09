@@ -6,8 +6,10 @@ import {
   USER_REGISTER_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAIL
+  USER_LOGIN_FAIL,
+  LOGOUT
 } from './actionsTypes';
+import Auth from '../../lib/auth';
 
 export const registerThunkCreator = registerData => async dispatch => {
   dispatch({
@@ -56,3 +58,11 @@ export const loginThunkCreator = loginData => async dispatch => {
     console.error(error);
   }
 };
+
+export const logoutThunkCreator = () => dispatch => {
+  dispatch({
+    type: LOGOUT
+  });
+  console.log('hihi')
+  Auth.logout();
+}

@@ -369,7 +369,7 @@ section {
   margin-right: -4px;
   padding-top: 2px;
 }
-.main_nav_item a {
+.main_nav_item a, .main_nav_item button {
   display: block;
   font-size: 15px;
   font-weight: 400;
@@ -377,11 +377,10 @@ section {
   line-height: 121px;
   padding-left: 22px;
   padding-right: 22px;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
   transition: all 200ms ease;
+  background: none;
+  cursor: pointer;
+  border: none;
   &.active::after {
     display: block;
     position: absolute;
@@ -396,11 +395,15 @@ section {
 .header.scrolled .main_nav_item a {
   line-height: 90px;
 }
-.main_nav_item.active a {
-  color: #fe435b;
+.main_nav_item.active {
+  a, button {
+    color: #fe435b;
+  }
 }
-.main_nav_item:hover a {
-  color: #fe435b;
+.main_nav_item:hover {
+  a, button {
+    color: #fe435b;
+  }
 }
 
 /*********************************
