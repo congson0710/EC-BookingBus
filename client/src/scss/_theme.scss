@@ -883,10 +883,13 @@ section {
   line-height: 52px;
   padding-left: 46px;
   padding-right: 46px;
-  background: #fe435b !important;
+  background: #fe435b;
   border: none;
   outline: none;
   cursor: pointer;
+}
+.main_button-secondary {
+  background: #acacac;
 }
 .find_button {
   display: inline-block;

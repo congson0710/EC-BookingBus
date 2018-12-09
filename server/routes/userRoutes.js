@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { userModel } from '../services/sequelize/models/userModel';
 import { JWT } from '../config';
 import { getIdFromToken } from '../utils/auth';
+import { convertEntityToJSON } from '../lib/model';
 
 const userRoute = app => {
   app.post('/api/login', async (req, res) => {
@@ -9,12 +10,12 @@ const userRoute = app => {
     try {
       const currentUser = await userModel.findOne({
         where: { email, userPassword },
+        attributes: { exclude: ['userPassword'] },
         raw: true
       });
       if (currentUser) {
-        const { userPassword, ...rest } = currentUser;
         const token = jwt.sign({ userID: currentUser.userID }, JWT.secret);
-        return res.json({ ...rest, token, message: 'Login successfully!' });
+        return res.json({ currentUser, token, message: 'Login successfully!' });
       }
       return res.status(401).json({ message: 'Incorrect email or password.' });
     } catch (error) {
@@ -35,12 +36,36 @@ const userRoute = app => {
     try {
       const user = await userModel.findOne({
         where: { userID },
+        attributes: { exclude: ['userPassword'] },
         raw: true
       });
-      const { userPassword, ...rest } = user;
-      return res.json(rest).end();
+      return res.json(user).end();
     } catch (error) {
-      return res.status(403).send('Unauthorize!').end();
+      return res
+        .status(403)
+        .send('Unauthorize!')
+        .end();
+    }
+  });
+
+  app.patch('/api/user/update', getIdFromToken, async (req, res) => {
+    const { userID } = req.userID;
+    const { userName, phone } = req.body;
+    try {
+      const user = await userModel.findOne({
+        where: { userID },
+        attributes: { exclude: ['userPassword'] }
+      });
+      await user.update({
+        phone,
+        userName
+      });
+      return res.json(convertEntityToJSON(user)).end();
+    } catch (error) {
+      return res
+        .status(400)
+        .send(error.message)
+        .end();
     }
   });
 };

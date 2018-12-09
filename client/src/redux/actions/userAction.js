@@ -7,6 +7,12 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  FETCH_USER_INFO,
+  FETCH_USER_INFO_SUCCESS,
+  FETCH_USER_INFO_FAIL,
+  SET_USER_INFO,
+  SET_USER_INFO_SUCCESS,
+  SET_USER_INFO_FAIL,
   LOGOUT
 } from './actionsTypes';
 import Auth from '../../lib/auth';
@@ -63,6 +69,40 @@ export const logoutThunkCreator = () => dispatch => {
   dispatch({
     type: LOGOUT
   });
-  console.log('hihi')
   Auth.logout();
-}
+};
+
+export const fetchUserInfo = () => async dispatch => {
+  dispatch({
+    type: FETCH_USER_INFO
+  });
+  try {
+    const data = await Auth.getUserInfo();
+    dispatch({
+      type: FETCH_USER_INFO_SUCCESS,
+      payload: data
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_USER_INFO_FAIL,
+      payload: {}
+    });
+  }
+};
+
+export const setUserInfo = data => async dispatch => {
+  dispatch({
+    type: SET_USER_INFO
+  });
+  try {
+    const userUpdate = await axios.patch('/api/user/update', data);
+    dispatch({
+      type: SET_USER_INFO_SUCCESS,
+      payload: userUpdate
+    });
+  } catch (err) {
+    dispatch({
+      type: SET_USER_INFO_FAIL
+    });
+  }
+};

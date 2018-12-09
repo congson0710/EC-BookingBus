@@ -11,7 +11,7 @@ import CheckTicket from './components/pages/CheckTicket';
 import BusRouteManagement from './components/pages/BusRouteManagement';
 import Payment from './components/pages/Payment';
 import { history } from './redux';
-import  Auth from './lib/auth';
+import Auth from './lib/auth';
 import { ROLE } from './common/const';
 import WithAuthorization from './components/AuthHOC';
 import { setToken } from './axios';
@@ -19,14 +19,10 @@ import { setToken } from './axios';
 import './App.scss';
 
 class App extends Component {
-  async componentDidMount() {
-    try {
-      const currentToken = localStorage.getItem('token') || '';
-      setToken(currentToken);
-      this.userInfo = await Auth.getUserInfo();
-    } catch (err) {
-      console.log(err);
-    }
+  constructor(props) {
+    super(props);
+    const currentToken = localStorage.getItem('token') || '';
+    setToken(currentToken);
   }
   render() {
     return (
@@ -36,7 +32,9 @@ class App extends Component {
           <Route
             exact
             path="/chinh-sua-thong-tin"
-            component={WithAuthorization([ROLE.CLIENT, ROLE.ADMIN])(EditProfile)}
+            component={WithAuthorization([ROLE.CLIENT, ROLE.ADMIN])(
+              EditProfile
+            )}
           />
           <Route
             exact
