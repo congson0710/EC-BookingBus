@@ -44,6 +44,8 @@ export const loginThunkCreator = loginData => async dispatch => {
         payload: response.data
       });
       setToken(response.data.token);
+      localStorage.setItem('role', response.data.roleID);
+      localStorage.setItem('token', response.data.token);
       history.push('/');
     }
   } catch (error) {
