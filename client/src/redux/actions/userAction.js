@@ -107,11 +107,21 @@ export const setUserInfo = data => async dispatch => {
     const userUpdate = await axios.patch('/api/user/update', data);
     dispatch({
       type: SET_USER_INFO_SUCCESS,
-      payload: userUpdate
+      payload: userUpdate.data
+    });
+    notification.success({
+      message: userUpdate.data.message,
+      // description: '',
+      duration: 2
     });
   } catch (err) {
     dispatch({
       type: SET_USER_INFO_FAIL
+    });
+    notification.success({
+      message: err.response.data.message,
+      // description: '',
+      duration: 2
     });
   }
 };

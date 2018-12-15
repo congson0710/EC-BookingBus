@@ -60,11 +60,11 @@ const userRoute = app => {
         phone,
         userName
       });
-      return res.json(convertEntityToJSON(user)).end();
+      return res.json({ message: 'Update info successfully!', ...convertEntityToJSON(user)}).end();
     } catch (error) {
       return res
         .status(400)
-        .send(error.message)
+        .json({ message: error.message})
         .end();
     }
   });
