@@ -83,7 +83,7 @@ const connectToRedux = connect(
 
 const lifecycleHOC = lifecycle({
   componentDidMount() {
-    this.props.fetchListTicket();
+    // this.props.fetchListTicket();
   }
 });
 

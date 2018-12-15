@@ -5,12 +5,15 @@ import compose from 'recompose/compose';
 import mapProps from 'recompose/mapProps';
 import flow from 'lodash/fp/flow';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import StartPlaceField from './StartPlaceField';
 import EndPlaceField from './EndPlaceField';
 import inputField from './inputField';
-import { searchingThunkCreator } from '../../redux/actions/bookingAction';
-import { reFetchPlaceThunkCreator } from '../../redux/actions/searchingAction';
+import {
+  reFetchPlaceThunkCreator,
+  searchTicketThunkCreator
+} from '../../redux/actions/searchingAction';
 
 const FORM_NAME = 'EcBooking/SearchForm';
 
@@ -54,7 +57,7 @@ const PureSearchForm = ({ handleSubmit, initOptions, reFetchListPlace }) => (
             }}
           />
           <Field
-            name="destinationPos"
+            name="startDay"
             component={inputField}
             label="Ngày đi"
             inputClassName="destination find_input unstyled"
@@ -73,7 +76,7 @@ const connnectToRedux = connect(
   null,
   dispatch => ({
     onSearchRequest: flow(
-      searchingThunkCreator,
+      searchTicketThunkCreator,
       dispatch
     ),
     reFetchListPlace: flow(
@@ -86,7 +89,11 @@ const connnectToRedux = connect(
 const prepareProps = mapProps(
   ({ onSearchRequest, history, ...otherProps }) => ({
     onSubmit: data => {
-      onSearchRequest(data);
+      const newData = {
+        ...data,
+        startDay: moment(new Date(data.startDay)).format('L')
+      };
+      onSearchRequest(newData);
       history.push('danh-sach-ve-xe');
     },
     ...otherProps

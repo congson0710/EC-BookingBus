@@ -1,3 +1,4 @@
 export const START_LIST_PLACE = 'START_LIST_PLACE';
 export const END_LIST_PLACE = 'END_LIST_PLACE';
 export const FILTER_LIST_PLACE = 'FILTER_LIST_PLACE';
+export const SEARCH_TICKET = 'SEARCH_TICKET';
