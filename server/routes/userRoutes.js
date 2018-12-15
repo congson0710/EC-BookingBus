@@ -17,9 +17,9 @@ const userRoute = app => {
         const token = jwt.sign({ userID: currentUser.userID }, JWT.secret);
         return res.json({ currentUser, token, message: 'Login successfully!' });
       }
-      return res.status(401).json({ message: 'Incorrect email or password.' });
+      throw new Error('Incorrect email or password.');
     } catch (error) {
-      return res.status(400).json({ message: 'Unexpected error.' });
+      return res.status(401).json({ message: error.message || 'Unexpected error.' });
     }
   });
 

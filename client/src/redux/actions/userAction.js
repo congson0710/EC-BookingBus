@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 import axios, { setToken } from '../../axios';
 import { history } from '../index';
 import {
@@ -45,23 +47,30 @@ export const loginThunkCreator = loginData => async dispatch => {
   });
 
   try {
-    const response = await axios.post('/api/login', loginData);
-    if (response) {
-      dispatch({
-        type: USER_LOGIN_SUCCESS,
-        payload: response.data
-      });
-      setToken(response.data.token);
-      localStorage.setItem('role', response.data.roleID);
-      localStorage.setItem('token', response.data.token);
-      history.push('/');
-    }
+    const { data } = await axios.post('/api/login', loginData);
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data
+    });
+    setToken(data.token);
+    localStorage.setItem('role', data.currentUser.roleID);
+    localStorage.setItem('token', data.token);
+    history.push('/');
+    notification.success({
+      message: data.message,
+      description: '',
+      duration: 2
+    });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload: error
+      payload: error.response.data.message
     });
-    console.error(error);
+    notification.error({
+      message: 'Login fail',
+      description: error.response.data.message,
+      duration: 2
+    });
   }
 };
 
