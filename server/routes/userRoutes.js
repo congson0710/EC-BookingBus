@@ -19,7 +19,9 @@ const userRoute = app => {
       }
       throw new Error('Incorrect email or password.');
     } catch (error) {
-      return res.status(401).json({ message: error.message || 'Unexpected error.' });
+      return res
+        .status(401)
+        .json({ message: error.message || 'Unexpected error.' });
     }
   });
 
@@ -50,21 +52,34 @@ const userRoute = app => {
 
   app.patch('/api/user/update', getIdFromToken, async (req, res) => {
     const { userID } = req.userID;
-    const { userName, phone } = req.body;
+    const { userName, phone, oldPassword, newPassword } = req.body;
     try {
-      const user = await userModel.findOne({
-        where: { userID },
-        attributes: { exclude: ['userPassword'] }
-      });
-      await user.update({
-        phone,
-        userName
-      });
-      return res.json({ message: 'Update info successfully!', ...convertEntityToJSON(user)}).end();
+      if (userName && phone) {
+        const user = await userModel.findOne({
+          where: { userID },
+          attributes: { exclude: ['userPassword'] }
+        });
+        await user.update({
+          phone,
+          userName
+        });
+        return res
+          .json({ message: 'Successfully!', ...convertEntityToJSON(user) })
+          .end();
+      } else {
+        const user = await userModel.findOne({
+          where: { userID }
+        });
+        if (user.userPassword !== oldPassword) {
+          throw new Error('Wrong password!')
+        }
+        await user.update({ userPassword: newPassword });
+        return res.json({ message: 'Successfully!' }).end();
+      }
     } catch (error) {
       return res
         .status(400)
-        .json({ message: error.message})
+        .json({ message: error.message })
         .end();
     }
   });

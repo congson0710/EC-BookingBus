@@ -27,7 +27,7 @@ class EditProfileForm extends Component {
   _handleReset = e => {
     e.preventDefault();
     this.setState({
-      info: {...this.props.userInfo}
+      info: { ...this.props.userInfo }
     });
   };
 

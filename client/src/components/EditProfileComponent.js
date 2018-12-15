@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs } from 'antd';
 
 import EditProfileForm from './EditProfileForm';
+import ChangePasswordForm from './ChangePasswordForm';
 
 class EditProfileComponent extends Component {
   render() {
@@ -15,7 +16,7 @@ class EditProfileComponent extends Component {
                 <EditProfileForm />
               </TabPane>
               <TabPane tab="Đổi mật khẩu" key="2">
-                Content of Tab Pane 2
+                <ChangePasswordForm />
               </TabPane>
               <TabPane tab="Lịch sử đặt, hủy vé" key="3">
                 Content of Tab Pane 2

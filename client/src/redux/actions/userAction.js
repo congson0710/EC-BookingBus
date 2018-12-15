@@ -15,7 +15,10 @@ import {
   SET_USER_INFO,
   SET_USER_INFO_SUCCESS,
   SET_USER_INFO_FAIL,
-  LOGOUT
+  LOGOUT,
+  CHANGE_PASWORD,
+  CHANGE_PASWORD_SUCCESS,
+  CHANGE_PASWORD_FAIL
 } from './actionsTypes';
 import Auth from '../../lib/auth';
 
@@ -111,16 +114,38 @@ export const setUserInfo = data => async dispatch => {
     });
     notification.success({
       message: userUpdate.data.message,
-      // description: '',
       duration: 2
     });
   } catch (err) {
     dispatch({
       type: SET_USER_INFO_FAIL
     });
-    notification.success({
+    notification.error({
       message: err.response.data.message,
-      // description: '',
+      duration: 2
+    });
+  }
+};
+
+export const updatePassword = data => async dispatch => {
+  dispatch({
+    type: CHANGE_PASWORD
+  });
+  try {
+    const response = await axios.patch('/api/user/update', data);
+    dispatch({
+      type: CHANGE_PASWORD_SUCCESS
+    });
+    notification.success({
+      message: response.data.message,
+      duration: 2
+    });
+  } catch (err) {
+    dispatch({
+      type: CHANGE_PASWORD_FAIL
+    });
+    notification.error({
+      message: err.response.data.message,
       duration: 2
     });
   }
