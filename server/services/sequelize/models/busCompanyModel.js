@@ -1,7 +1,17 @@
 import Sequelize from 'sequelize';
 import { sequelizeInstance } from '../index';
 
-export const busCompanyModel = sequelizeInstance.define('bus_company', {
+const companys = [
+  'Thành Bưởi',
+  'Phương Trang',
+  'Hoàng Long',
+  'Mai Linh',
+  'Hưng Long',
+  'Hồng Hải',
+  'Hưng Thành'
+];
+
+const BusCompanyModel = sequelizeInstance.define('bus_company', {
   busCompanyID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -14,22 +24,14 @@ export const busCompanyModel = sequelizeInstance.define('bus_company', {
   }
 });
 
-// const companys = [
-//   'Thành Bưởi',
-//   'Phương Trang',
-//   'Hoàng Long',
-//   'Mai Linh',
-//   'Hưng Long',
-//   'Hồng Hải',
-//   'Hưng Thành'
-// ];
-
-// export const createBusCompanyTable = busCompanyModel
+// BusCompanyModel
 //   .sync({ force: true })
 //   .then(() => {
 //     companys.forEach(company => {
-//       busCompanyModel.create({
+//       BusCompanyModel.create({
 //         companyName: company
 //       });
 //     });
 //   });
+
+export default BusCompanyModel;

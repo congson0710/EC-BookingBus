@@ -1,7 +1,7 @@
-export const USER_MODEL = 'userModel';
-export const TICKET_MODEL = 'ticketModel';
-export const ROLE_MODEL = 'roleModel';
-export const PLACE_MODEL = 'placeModel';
-export const BUS_ROUTE_MODEL = 'busRouteModel';
-export const BUS_MODEL = 'busModel';
-export const BUS_COMPANY_MODEL = 'busCompanyModel';
+export const USER_MODEL = 'UserModel';
+export const TICKET_MODEL = 'TicketModel';
+export const ROLE_MODEL = 'RoleModel';
+export const PLACE_MODEL = 'PlaceModel';
+export const BUS_ROUTE_MODEL = 'BusRouteModel';
+export const BUS_MODEL = 'BusModel';
+export const BUS_COMPANY_MODEL = 'BusCompanyModel';
