@@ -103,7 +103,7 @@ class EditProfileForm extends Component {
           required
         />
         <div className="text-center">
-          <button className="mt-4 main_button">Chỉnh sửa</button>
+          <button className="mt-4 main_button">Đổi mật khẩu</button>
           <button
             className="mt-4 ml-2 main_button main_button-secondary"
             onClick={this._handleReset}

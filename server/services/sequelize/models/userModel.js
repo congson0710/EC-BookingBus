@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import _ from 'lodash';
+import md5 from 'md5';
 
 import { sequelizeInstance } from '../index';
 
@@ -15,6 +16,15 @@ export const userModel = sequelizeInstance.define('user', {
   userName: { type: Sequelize.STRING, allowNull: false },
   phone: { type: Sequelize.STRING, allowNull: false },
   roleID: { type: Sequelize.INTEGER, allowNull: false }
+}, {
+  hooks: {
+    beforeUpdate: (user) => {
+      if (user.userPassword) user.userPassword = md5(user.userPassword);
+    },
+    beforeCreate: (user) => {
+      if (user.userPassword) user.userPassword = md5(user.userPassword);
+    }
+  } 
 });
 
 // export const createUserTable = userModel.sync({ force: true }).then(() => {

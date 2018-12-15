@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import md5 from 'md5';
+
 import { userModel } from '../services/sequelize/models/userModel';
 import { JWT } from '../config';
 import { getIdFromToken } from '../utils/auth';
@@ -70,7 +72,7 @@ const userRoute = app => {
         const user = await userModel.findOne({
           where: { userID }
         });
-        if (user.userPassword !== oldPassword) {
+        if (user.userPassword !== md5(oldPassword)) {
           throw new Error('Wrong password!')
         }
         await user.update({ userPassword: newPassword });
