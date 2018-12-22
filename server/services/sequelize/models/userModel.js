@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { sequelizeInstance } from '../index';
 
-export const userModel = sequelizeInstance.define('user', {
+const UserModel = sequelizeInstance.define('user', {
   userID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -17,9 +17,10 @@ export const userModel = sequelizeInstance.define('user', {
   roleID: { type: Sequelize.INTEGER, allowNull: false }
 });
 
-// export const createUserTable = userModel.sync({ force: true }).then(() => {
+// sync
+// UserModel.sync({ force: true }).then(() => {
 //   _.times(100, () => {
-//     return userModel.create({
+//     return UserModel.create({
 //       email: faker.internet.email(),
 //       userPassword: faker.internet.password(),
 //       userName: faker.name.findName(),
@@ -28,3 +29,5 @@ export const userModel = sequelizeInstance.define('user', {
 //     });
 //   });
 // });
+
+export default UserModel;

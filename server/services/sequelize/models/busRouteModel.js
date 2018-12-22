@@ -2,14 +2,17 @@ import Sequelize from 'sequelize';
 import _ from 'lodash';
 
 import { sequelizeInstance } from '../index';
+
 import {
   randomBusID,
   randomDayAndTime,
   randomPlaceID,
   randomSeatNumber
 } from '../../../utils';
+import { TicketModel } from './ticketModel';
+import { BusModel } from './busModel';
 
-export const busRouteModel = sequelizeInstance.define('bus_route', {
+const BusRouteModel = sequelizeInstance.define('bus_route', {
   routeID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -42,11 +45,11 @@ export const busRouteModel = sequelizeInstance.define('bus_route', {
   }
 });
 
-// export const createBusRouteTable = busRouteModel
+//busRouteModel
 //   .sync({ force: true })
 //   .then(() => {
 //     _.times(100, () => {
-//       return busRouteModel.create({
+//       return BusRouteModel.create({
 //         startPlaceID: randomPlaceID(),
 //         endPlaceID: randomPlaceID(),
 //         seatNumber: randomSeatNumber(),
@@ -56,3 +59,5 @@ export const busRouteModel = sequelizeInstance.define('bus_route', {
 //       });
 //     });
 //   });
+
+export default BusRouteModel;

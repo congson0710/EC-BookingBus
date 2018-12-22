@@ -1,7 +1,26 @@
 import includes from 'lodash/fp/includes';
 
-import { FETCH_START_LIST_PLACE, FETCH_END_LIST_PLACE } from './actionsTypes';
+import {
+  FETCH_START_LIST_PLACE,
+  FETCH_END_LIST_PLACE,
+  SEARCH_TICKET
+} from './actionsTypes';
 import { thunkBodyCreator } from '../share';
+
+export const searchTicketThunkCreator = (requestData = {}) => dispatch => {
+  const genQueryRoute = requestData =>
+    `/api/search-ticket?startPlace=${requestData.startPlace}&endPlace=${
+      requestData.endPlace
+    }&startDay=${requestData.startDay}`;
+
+  thunkBodyCreator({
+    dispatch,
+    action: SEARCH_TICKET,
+    route: genQueryRoute(requestData),
+    data: requestData,
+    type: 'get'
+  });
+};
 
 export const fetchStartListPlaceThunkCreator = (
   requestData = {}

@@ -1,19 +1,6 @@
 import Sequelize from 'sequelize';
 import { sequelizeInstance } from '../index';
 
-export const placeModel = sequelizeInstance.define('place', {
-  placeID: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-  placeName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
-});
-
 const places = [
   'Tp Hồ Chí Minh',
   'Đà Lạt',
@@ -27,10 +14,25 @@ const places = [
   'Huế'
 ];
 
-// export const createPlaceTable = placeModel.sync({ force: true }).then(() => {
+const PlaceModel = sequelizeInstance.define('place', {
+  placeID: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  placeName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
+
+// PlaceModel.sync({ force: true }).then(() => {
 //   places.forEach(place => {
-//     return placeModel.create({
+//     return PlaceModel.create({
 //       placeName: place
 //     });
 //   });
 // });
+
+export default PlaceModel;
