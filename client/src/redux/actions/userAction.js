@@ -34,13 +34,22 @@ export const registerThunkCreator = registerData => async dispatch => {
         type: USER_REGISTER_SUCCESS,
         payload: response.data
       });
+      notification.success({
+        message: response.data.message,
+        description: '',
+        duration: 2
+      });
     }
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
       payload: error
     });
-    console.error(error);
+    notification.error({
+      message: 'Register fail',
+      description: error.response.data.message,
+      duration: 2
+    });
   }
 };
 

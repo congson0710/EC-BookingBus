@@ -28,12 +28,33 @@ const userRoute = app => {
     }
   });
 
-  app.post('/api/register', (req, res) => {
-    const { userName, userRole, password, reTypePassword } = req.body;
-    return res
-      .status(200)
-      .json(req.body)
-      .end();
+  app.post('/api/register', async (req, res) => {
+    const { email, password, phone, userName, userRole } = req.body;
+    try {
+      const user = await userModel.findOne({
+        where: { email },
+        raw: true
+      });
+      if (user) {
+        throw new Error('Email address already in use.');
+      }
+      if (!phone.match(/^[0-9]+$/)) {
+        throw new Error('Invalid phone number.')
+      }
+      await userModel.create({
+        email,
+        userPassword: password,
+        phone,
+        userName,
+        roleID: userRole
+      });
+      return res.json({ message: 'Register successfully!' });
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ message: error.message || 'Unexpected error.' })
+        .end();
+    }
   });
 
   app.post('/api/me', getIdFromToken, async (req, res) => {
