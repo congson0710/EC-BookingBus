@@ -11,7 +11,7 @@ const PureTable = ({ columns, rows }) => (
         columns
       )}
     </tr>
-    {map(row => <Row row={row} />)(rows)}
+    {map(row => <Row key={Math.random()} row={row} />)(rows)}
   </table>
 );
 

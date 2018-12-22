@@ -1,15 +1,5 @@
 import { thunkBodyCreator } from '../share';
-import { SEARCH_TICKET, FETCH_LIST_TICKET } from './actionsTypes';
-
-export const searchingThunkCreator = searchData => dispatch => {
-  thunkBodyCreator({
-    dispatch,
-    action: SEARCH_TICKET,
-    route: '/api/search',
-    data: searchData,
-    type: 'post'
-  });
-};
+import { FETCH_LIST_TICKET } from './actionsTypes';
 
 export const fetchListTicketThunkCreator = () => dispatch => {
   thunkBodyCreator({

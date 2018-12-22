@@ -1,10 +1,11 @@
 import Sequelize from 'sequelize';
 import _ from 'lodash';
 
-import { sequelizeInstance } from '../index';
 import { randomBusCompanyID } from '../../../utils';
+import { ticketModel } from './ticketModel';
+import { sequelizeInstance } from '../index';
 
-export const busModel = sequelizeInstance.define('bus', {
+const BusModel = sequelizeInstance.define('bus', {
   busID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -21,11 +22,13 @@ export const busModel = sequelizeInstance.define('bus', {
   }
 });
 
-// export const createBusTable = busModel.sync({ force: true }).then(() => {
+// busModel.sync({ force: true }).then(() => {
 //   _.times(100, () => {
-//     return busModel.create({
+//     return BusModel.create({
 //       busCompanyID: randomBusCompanyID(),
 //       totalSeat: 30
 //     });
 //   });
 // });
+
+export default BusModel;

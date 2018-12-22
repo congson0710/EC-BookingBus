@@ -109,13 +109,13 @@ export const reducerCreator = (reducerName, reducerPath) => {
   };
 };
 
-export const rawDataSelectorCreator = (
+export const rawSelectorCreator = (
   reducerName,
   reducerSectionName
-) => state =>
+) => attributeName => state =>
   flow(
     get(reducerName),
     get(reducerSectionName),
     get(genReducerPath(reducerSectionName)),
-    get('data')
+    get(attributeName)
   )(state);
