@@ -21,6 +21,10 @@ const TicketModel = sequelizeInstance.define('ticket', {
   status: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  price: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 
@@ -29,7 +33,8 @@ const TicketModel = sequelizeInstance.define('ticket', {
 //   _.times(1000, () => {
 //     return TicketModel.create({
 //       busRouteID: randomBusRouteID(),
-//       status: faker.random.arrayElement(['SOLD', 'UNSOLD'])
+//       status: faker.random.arrayElement(['SOLD', 'UNSOLD']),
+//       price: '220.000 VND'
 //     });
 //   });
 // });

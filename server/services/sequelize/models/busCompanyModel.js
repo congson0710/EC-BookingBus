@@ -8,7 +8,10 @@ const companys = [
   'Mai Linh',
   'Hưng Long',
   'Hồng Hải',
-  'Hưng Thành'
+  'Hưng Thành',
+  'Tuyết Hon',
+  'Hải Nam',
+  'Đông Triều'
 ];
 
 const BusCompanyModel = sequelizeInstance.define('bus_company', {
@@ -24,14 +27,12 @@ const BusCompanyModel = sequelizeInstance.define('bus_company', {
   }
 });
 
-// BusCompanyModel
-//   .sync({ force: true })
-//   .then(() => {
-//     companys.forEach(company => {
-//       BusCompanyModel.create({
-//         companyName: company
-//       });
+// BusCompanyModel.sync({ force: true }).then(() => {
+//   companys.forEach(company => {
+//     BusCompanyModel.create({
+//       companyName: company
 //     });
 //   });
+// });
 
 export default BusCompanyModel;

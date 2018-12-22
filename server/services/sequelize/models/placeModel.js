@@ -27,7 +27,7 @@ const PlaceModel = sequelizeInstance.define('place', {
   }
 });
 
-// placeModel.sync({ force: true }).then(() => {
+// PlaceModel.sync({ force: true }).then(() => {
 //   places.forEach(place => {
 //     return PlaceModel.create({
 //       placeName: place
