@@ -3,29 +3,35 @@ import _ from 'lodash';
 import md5 from 'md5';
 
 import { sequelizeInstance } from '../index';
+import { faker } from '../../faker';
+import { randomRoleID } from '../../../utils';
 
-const UserModel = sequelizeInstance.define('user', {
-  userID: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-  email: { type: Sequelize.STRING, allowNull: false },
-  userPassword: { type: Sequelize.STRING, allowNull: false },
-  userName: { type: Sequelize.STRING, allowNull: false },
-  phone: { type: Sequelize.STRING, allowNull: false },
-  roleID: { type: Sequelize.INTEGER, allowNull: false }
-}, {
-  hooks: {
-    beforeUpdate: (user) => {
-      if (user.userPassword) user.userPassword = md5(user.userPassword);
+const UserModel = sequelizeInstance.define(
+  'user',
+  {
+    userID: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true
     },
-    beforeCreate: (user) => {
-      if (user.userPassword) user.userPassword = md5(user.userPassword);
+    email: { type: Sequelize.STRING, allowNull: false },
+    userPassword: { type: Sequelize.STRING, allowNull: false },
+    userName: { type: Sequelize.STRING, allowNull: false },
+    phone: { type: Sequelize.STRING, allowNull: false },
+    roleID: { type: Sequelize.INTEGER, allowNull: false }
+  },
+  {
+    hooks: {
+      beforeUpdate: user => {
+        if (user.userPassword) user.userPassword = md5(user.userPassword);
+      },
+      beforeCreate: user => {
+        if (user.userPassword) user.userPassword = md5(user.userPassword);
+      }
     }
-  } 
-});
+  }
+);
 
 // sync
 // UserModel.sync({ force: true }).then(() => {
