@@ -16,7 +16,7 @@ const RoleModel = sequelizeInstance.define('role', {
   }
 });
 
-// roleModel.sync({ force: true }).then(() => {
+// RoleModel.sync({ force: true }).then(() => {
 //   roles.forEach(role => {
 //     return RoleModel.create({
 //       roleName: role

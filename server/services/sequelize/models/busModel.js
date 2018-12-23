@@ -22,7 +22,7 @@ const BusModel = sequelizeInstance.define('bus', {
   }
 });
 
-// busModel.sync({ force: true }).then(() => {
+// BusModel.sync({ force: true }).then(() => {
 //   _.times(100, () => {
 //     return BusModel.create({
 //       busCompanyID: randomBusCompanyID(),
