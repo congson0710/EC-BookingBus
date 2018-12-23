@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import lifecycle from 'recompose/lifecycle';
 import compose from 'recompose/compose';
 import flow from 'lodash/fp/flow';
+import isEmpty from 'lodash/fp/isEmpty';
 import Spinner from 'react-md-spinner';
 
 import ListTicketTable from './Table';
@@ -30,6 +31,10 @@ const columns = [
     type: 'col'
   },
   {
+    name: 'Thời gian',
+    type: 'col'
+  },
+  {
     name: 'Giá vé',
     type: 'col'
   },
@@ -49,20 +54,22 @@ const styles = {
   }
 };
 
+const getDay = listTicket =>
+  isEmpty(listTicket) ? null : listTicket[0].bus_route.day;
+
 const PureListTicket = ({ isSearching, listTicket }) => (
   <div className="body-section">
     <div className="list-ticket-container">
       <div className="container">
         <h1 className="text-white text-center mb-5">
-          Danh sách vé ngày 11/11/2019
+          {`Danh sách vé ngày ${getDay(listTicket)}`}
         </h1>
         {isSearching ? (
           <div style={styles.spinnerStyle}>
             <Spinner size={60} />
           </div>
         ) : (
-          (console.log('list ticket', listTicket),
-          <ListTicketTable columns={columns} rows={listTicket} />)
+          <ListTicketTable columns={columns} rows={listTicket} />
         )}
       </div>
     </div>

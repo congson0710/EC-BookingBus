@@ -29,6 +29,7 @@ const PureRow = ({ row: { ticketID, bus_route, status, price } }) => (
     <td>{getStartPlace(bus_route)}</td>
     <td>{getEndPlace(bus_route)}</td>
     <td>{bus_route.seatNumber}</td>
+    <td>{bus_route.startTime}</td>
     <td>{price}</td>
     <td>{isTicketSold(status) ? 'Hết vé' : 'Còn vé'}</td>
     <td>
