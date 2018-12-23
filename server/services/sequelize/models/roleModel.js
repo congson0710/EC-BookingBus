@@ -16,12 +16,12 @@ const RoleModel = sequelizeInstance.define('role', {
   }
 });
 
-RoleModel.sync({ force: true }).then(() => {
-  roles.forEach(role => {
-    return RoleModel.create({
-      roleName: role
-    });
-  });
-});
+// RoleModel.sync({ force: true }).then(() => {
+//   roles.forEach(role => {
+//     return RoleModel.create({
+//       roleName: role
+//     });
+//   });
+// });
 
 export default RoleModel;

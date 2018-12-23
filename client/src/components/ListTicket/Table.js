@@ -6,12 +6,14 @@ import Row from './Row';
 
 const PureTable = ({ columns, rows }) => (
   <table className="table table-custom">
-    <tr>
-      {map(column => <th key={Math.random()}>{get('name')(column)}</th>)(
-        columns
-      )}
-    </tr>
-    {map(row => <Row key={Math.random()} row={row} />)(rows)}
+    <tbody>
+      <tr>
+        {map(column => <th key={Math.random()}>{get('name')(column)}</th>)(
+          columns
+        )}
+      </tr>
+      {map(row => <Row key={Math.random()} row={row} />)(rows)}
+    </tbody>
   </table>
 );
 
