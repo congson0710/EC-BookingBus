@@ -49,7 +49,7 @@ class App extends Component {
           <Route path="/danh-sach-ve-xe" component={ListTicketPage} />
           <Route path="/dat-ve" component={BookingTicket} />
           <Route path="/kiem-tra-ve" component={CheckTicket} />
-          <Route path="/quan-li-chuyen-xe" component={BusRouteManagement} />
+          <Route path="/quan-li-chuyen-xe" component={WithAuthorization([ROLE.COMPANY])(BusRouteManagement)} />
           <Route path="/thanh-toan" component={Payment} />
         </React.Fragment>
       </Router>
