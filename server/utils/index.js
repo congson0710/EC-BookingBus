@@ -15,9 +15,9 @@ import { faker } from '../services/faker';
 export const randomRoleID = () => Math.floor(Math.random() * 4);
 
 export const randomDayAndTime = () => {
-  const random = faker.date.between('2019-01-01', '2019-12-31');
+  const random = faker.date.between('2018-01-01', '2019-12-31');
   return {
-    time: moment(random).format('LT'),
+    time: moment(random.setMinutes(30) || random.setMinutes(0)).format('LT'),
     day: moment(random).format('DD/MM/YYYY')
   };
 };

@@ -1,10 +1,13 @@
 import uniqBy from 'lodash/fp/uniqBy';
+import moment from 'moment';
 
 import BusRoute from '../services/sequelize/models/busRouteModel';
 import Ticket from '../services/sequelize/models/ticketModel';
 import Bus from '../services/sequelize/models/busModel';
 import BusCompany from '../services/sequelize/models/busCompanyModel';
 import Place from '../services/sequelize/models/placeModel';
+
+const formatDay = day => moment(new Date(day)).format('DD/MM/YYYY');
 
 const searchRoutes = app => {
   app.get('/api/search-ticket', async (req, res) => {
@@ -15,7 +18,11 @@ const searchRoutes = app => {
         include: [
           {
             model: BusRoute,
-            where: { startPlaceID: startPlace, endPlaceID: endPlace },
+            where: {
+              startPlaceID: startPlace,
+              endPlaceID: endPlace,
+              day: formatDay(startDay)
+            },
             include: [
               {
                 model: Bus,
