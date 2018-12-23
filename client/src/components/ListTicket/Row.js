@@ -75,5 +75,6 @@ const connectToRedux = connect(
       dispatch
     )
   })
+)
 
 export default connectToRedux(PureRow);
