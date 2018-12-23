@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import MenuAuthorization from './AuthHOC/MenuAuthorization';
 import Logo from '../images/logo.png';
+import { ROLE } from '../common/const';
+import { logoutThunkCreator } from '../redux/actions/userAction';
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onLogoutRequest: () => dispatch(logoutThunkCreator())
+  };
+}
 class Menu extends Component {
+  _logout = () => {
+    this.props.onLogoutRequest();
+  }
   render() {
     return (
       <header className="header">
@@ -22,35 +33,54 @@ class Menu extends Component {
             <nav className="main_nav ml-auto">
               <ul className="main_nav_list">
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" exact to="/">
-                    Trang chủ
-                  </NavLink>
+                  <MenuAuthorization>
+                    <NavLink activeClassName="active" exact to="/">
+                      Trang chủ
+                    </NavLink>
+                  </MenuAuthorization>
                 </li>
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" to="/kiem-tra-ve">
-                    Kiểm tra vé
-                  </NavLink>
+                  <MenuAuthorization roleAllowed={[ROLE.CLIENT]}>
+                    <NavLink activeClassName="active" to="/kiem-tra-ve">
+                      Kiểm tra vé
+                    </NavLink>
+                  </MenuAuthorization>
                 </li>
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" to="/quan-li-chuyen-xe">
-                    Quản lí chuyến xe
-                  </NavLink>
+                  <MenuAuthorization roleAllowed={[ROLE.COMPANY]}>
+                    <NavLink activeClassName="active" to="/quan-li-chuyen-xe">
+                      Quản lí chuyến xe
+                    </NavLink>
+                  </MenuAuthorization>
                 </li>
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" to="/chinh-sua-thong-tin">
-                    Thông tin cá nhân
-                  </NavLink>
+                  <MenuAuthorization roleAllowed={[ROLE.CLIENT]}>
+                    <NavLink activeClassName="active" to="/chinh-sua-thong-tin">
+                      Thông tin cá nhân
+                    </NavLink>
+                  </MenuAuthorization>
                 </li>
 
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" exact to="/dang-nhap">
-                    Đăng nhập
-                  </NavLink>
+                  <MenuAuthorization roleAllowed={[ROLE.GUEST]}>
+                    <NavLink activeClassName="active" exact to="/dang-nhap">
+                      Đăng nhập
+                    </NavLink>
+                  </MenuAuthorization>
                 </li>
                 <li className="main_nav_item">
-                  <NavLink activeClassName="active" exact to="/dang-ki">
-                    Đăng kí
-                  </NavLink>
+                  <MenuAuthorization roleAllowed={[ROLE.GUEST]}>
+                    <NavLink activeClassName="active" exact to="/dang-ki">
+                      Đăng kí
+                    </NavLink>
+                  </MenuAuthorization>
+                </li>
+                <li className="main_nav_item">
+                  <MenuAuthorization
+                    roleAllowed={[ROLE.COMPANY, ROLE.CLIENT, ROLE.ADMIN]}
+                  >
+                    <button onClick={this._logout}>Đăng xuất</button>
+                  </MenuAuthorization>
                 </li>
               </ul>
             </nav>
@@ -61,4 +91,7 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+export default connect(
+  null,
+  mapDispatchToProps
+)(Menu);

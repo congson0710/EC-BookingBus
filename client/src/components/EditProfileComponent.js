@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
+
+import EditProfileForm from './EditProfileForm';
+import ChangePasswordForm from './ChangePasswordForm';
+
 class EditProfileComponent extends Component {
   render() {
     const { TabPane } = Tabs;
@@ -9,20 +13,10 @@ class EditProfileComponent extends Component {
           <div className="edit-profile">
             <Tabs defaultActiveKey="1" size="large" animated={false}>
               <TabPane tab="Thông tin cá nhân" key="1">
-                <form style={{maxWidth: '600px', margin: '0 auto'}}>
-                  <label className="mt-3 auth-form__label">Họ và tên</label>
-                  <input type="text" className="find_input" />
-                  <label className="mt-3 auth-form__label">Tên đăng nhập</label>
-                  <input type="text" className="find_input" />
-                  <label className="mt-3 auth-form__label">Số điện thoại</label>
-                  <input type="text" className="find_input" />
-                  <div className="text-center">
-                    <button className="mt-4 main_button">Chỉnh sửa</button>
-                  </div>
-                </form>
+                <EditProfileForm />
               </TabPane>
               <TabPane tab="Đổi mật khẩu" key="2">
-                Content of Tab Pane 2
+                <ChangePasswordForm />
               </TabPane>
               <TabPane tab="Lịch sử đặt, hủy vé" key="3">
                 Content of Tab Pane 2

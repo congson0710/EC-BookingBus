@@ -14,7 +14,7 @@ const classNames = {
   input: 'find_input'
 };
 
-const PureLoginForm = ({ handleSubmit }) => (
+const PureLoginForm = ({ handleSubmit, authMessage }) => (
   <div className="auth-form-wrapper">
     <div className="container">
       <h1>Đăng nhập</h1>
@@ -46,7 +46,9 @@ const PureLoginForm = ({ handleSubmit }) => (
 );
 
 const connectToRedux = connect(
-  null,
+  state => ({
+    authMessage: state.userReducer.authMessage
+  }),
   dispatch => ({
     onLoginRequest: flow(
       loginThunkCreator,

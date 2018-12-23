@@ -1,7 +1,7 @@
 import includes from 'lodash/fp/includes';
 import get from 'lodash/fp/get';
 
-import PlaceModel from '../services/sequelize/models/PlaceModel';
+import PlaceModel from '../services/sequelize/models/placeModel';
 
 const placeRoutes = app => {
   app.get('/api/list-place', async (req, res) => {
