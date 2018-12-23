@@ -27,7 +27,6 @@ const getEndPlace = busRoute =>
     get('endPlace'),
     get('placeName')
   )(busRoute);
-
 const styles = {
   spinner: {
     textAlign: 'center'
@@ -76,6 +75,5 @@ const connectToRedux = connect(
       dispatch
     )
   })
-);
 
 export default connectToRedux(PureRow);
