@@ -28,15 +28,14 @@ const TicketModel = sequelizeInstance.define('ticket', {
   }
 });
 
-// sync
-// TicketModel.sync({ force: true }).then(() => {
-//   _.times(1000, () => {
-//     return TicketModel.create({
-//       busRouteID: randomBusRouteID(),
-//       status: faker.random.arrayElement(['SOLD', 'UNSOLD']),
-//       price: '220.000 VND'
-//     });
-//   });
-// });
+TicketModel.sync({ force: true }).then(() => {
+  _.times(1000, () => {
+    return TicketModel.create({
+      busRouteID: randomBusRouteID(),
+      status: faker.random.arrayElement(['SOLD', 'UNSOLD']),
+      price: '220.000 VND'
+    });
+  });
+});
 
 export default TicketModel;

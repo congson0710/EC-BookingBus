@@ -27,12 +27,12 @@ const PlaceModel = sequelizeInstance.define('place', {
   }
 });
 
-// PlaceModel.sync({ force: true }).then(() => {
-//   places.forEach(place => {
-//     return PlaceModel.create({
-//       placeName: place
-//     });
-//   });
-// });
+PlaceModel.sync({ force: true }).then(() => {
+  places.forEach(place => {
+    return PlaceModel.create({
+      placeName: place
+    });
+  });
+});
 
 export default PlaceModel;
