@@ -59,7 +59,7 @@ const PureRegisterForm = ({ handleSubmit }) => (
         role={ROLE}
       />
       <div className="text-center">
-        <button className="mt-5 button main_button">
+        <button className="mt-5 main_button">
           Đăng kí
         </button>
       </div>

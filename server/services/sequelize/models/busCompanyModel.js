@@ -27,12 +27,12 @@ const BusCompanyModel = sequelizeInstance.define('bus_company', {
   }
 });
 
-// BusCompanyModel.sync({ force: true }).then(() => {
-//   companys.forEach(company => {
-//     BusCompanyModel.create({
-//       companyName: company
-//     });
-//   });
-// });
+BusCompanyModel.sync({ force: true }).then(() => {
+  companys.forEach(company => {
+    BusCompanyModel.create({
+      companyName: company
+    });
+  });
+});
 
 export default BusCompanyModel;
