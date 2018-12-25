@@ -6,18 +6,18 @@ class CheckInformation extends Component {
       <div>
         <div className="row">
           <div className="col-6">
-            <Card title="Card title" bordered>
+            <Card title="Quản lý xe" bordered>
               Card content
             </Card>
           </div>
           <div className="col-6">
-            <Card title="Card title" bordered>
+            <Card title="Biểu giá vé" bordered>
               Card content
             </Card>
           </div>
           <div className="col-12">
             <div className="mt-5">
-              <Card title="Card title" bordered>
+              <Card title="Tuyến xe khách" bordered>
                 Card content
               </Card>
             </div>

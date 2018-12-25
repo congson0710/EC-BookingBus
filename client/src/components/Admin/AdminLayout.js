@@ -32,14 +32,14 @@ function AdminLayout({ children }) {
               <NavLink
                 activeClassName="active"
                 className="admin-menu__link"
-                to="/quan-ly-dat-huy"
+                to="/admin/quan-ly-dat-huy"
               >
                 Quản lý đặt/hủy vé
               </NavLink>
               <NavLink
                 activeClassName="active"
                 className="admin-menu__link"
-                to="/bao-cao-thong-ke"
+                to="/admin/bao-cao-thong-ke"
               >
                 Báo cáo thống kê
               </NavLink>
