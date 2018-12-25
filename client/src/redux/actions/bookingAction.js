@@ -12,11 +12,11 @@ export const fetchListTicketThunkCreator = () => dispatch => {
 };
 
 export const bookTicketThunkCreator = (requestData = {}) => dispatch => {
-  const { ticketID } = requestData;
+  const { ticketID, userID } = requestData;
   thunkBodyCreator({
     dispatch,
     action: BOOK_TICKET,
-    route: `/api/book-ticket/${ticketID}`,
+    route: `/api/${userID}/book-ticket/${ticketID}`,
     data: requestData,
     type: 'post'
   });

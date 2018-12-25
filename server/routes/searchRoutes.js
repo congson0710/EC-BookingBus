@@ -46,7 +46,6 @@ const searchRoutes = app => {
       });
 
       const newListTickets = uniqBy('busRouteID')(tickets);
-
       res.status(200).send(newListTickets);
     } catch (error) {
       console.error(error);
