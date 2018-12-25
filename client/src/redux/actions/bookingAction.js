@@ -1,9 +1,12 @@
-import { thunkBodyCreator } from '../share';
-import { SEARCH_TICKET, BOOK_TICKET } from './actionsTypes';
-import { history } from '..';
+import get from 'lodash/fp/get';
 
-export const fetchListTicketThunkCreator = (requestData) => dispatch => {
-   const genQueryRoute = requestData =>
+import {thunkBodyCreator} from '../share';
+import {SEARCH_TICKET, BOOK_TICKET} from './actionsTypes';
+import {history} from '..';
+import {getUserInfo} from '../share';
+
+export const fetchListTicketThunkCreator = requestData => dispatch => {
+  const genQueryRoute = requestData =>
     `/api/search-ticket?startPlace=${requestData.startPlace}&endPlace=${
       requestData.endPlace
     }&startDay=${requestData.startDay}`;
@@ -12,23 +15,21 @@ export const fetchListTicketThunkCreator = (requestData) => dispatch => {
     action: SEARCH_TICKET,
     route: genQueryRoute(requestData),
     data: requestData,
-    type: 'get'
+    type: 'get',
   });
 };
 
 export const bookTicketThunkCreator = (requestData = {}) => async dispatch => {
-  const { ticketID } = requestData;
-  const user = localStorage.getItem('user');
+  const {ticketID} = requestData;
+  const user = getUserInfo();
   if (!user) {
     return history.push('/dang-nhap');
   }
   thunkBodyCreator({
     dispatch,
     action: BOOK_TICKET,
-    route: `/api/${userID}/book-ticket/${ticketID}`,
-    data: requestData,
-    type: 'post'
+    route: `/api/book-ticket/`,
+    data: {...requestData, userID: user.userID},
+    type: 'post',
   });
-
-  
 };

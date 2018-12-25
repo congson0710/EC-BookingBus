@@ -6,17 +6,17 @@ import {
   isPost,
   genActionTypes,
   genRequestConfig,
-  genReducerPath
+  genReducerPath,
 } from './utils';
 
 const thunkBody = async ({
   dispatch,
   actionTypes,
   route,
-  requestConfig = {}
+  requestConfig = {},
 }) => {
   dispatch({
-    type: get('request')(actionTypes)
+    type: get('request')(actionTypes),
   });
 
   try {
@@ -27,37 +27,37 @@ const thunkBody = async ({
     if (response) {
       dispatch({
         type: get('success')(actionTypes),
-        payload: response.data
+        payload: response.data,
       });
     }
   } catch (error) {
     dispatch({
       type: get('fail')(actionTypes),
-      payload: error
+      payload: error,
     });
     console.error(error);
   }
 };
 
-const genParams = ({ dispatch, action, route, data, type }) => {
+const genParams = ({dispatch, action, route, data, type}) => {
   const actionTypes = genActionTypes(action);
   const requestConfig = genRequestConfig(data, type);
   return {
     dispatch,
     actionTypes,
     route,
-    requestConfig
+    requestConfig,
   };
 };
 
 export const setRawDataActionCreator = action => payload => ({
   type: action,
-  payload
+  payload,
 });
 
 export const thunkBodyCreator = flow(
   genParams,
-  thunkBody
+  thunkBody,
 );
 
 export const reducerCreator = (reducerName, reducerPath) => {
@@ -70,8 +70,8 @@ export const reducerCreator = (reducerName, reducerPath) => {
           ...state,
           [reducerPath]: {
             ...get(reducerPath)(state),
-            isLoading: true
-          }
+            isLoading: true,
+          },
         };
       }
       case get('success')(actionTypes): {
@@ -80,8 +80,8 @@ export const reducerCreator = (reducerName, reducerPath) => {
           [reducerPath]: {
             ...get(reducerPath)(state),
             data: get('payload')(action),
-            isLoading: false
-          }
+            isLoading: false,
+          },
         };
       }
       case get('fail')(actionTypes): {
@@ -90,8 +90,8 @@ export const reducerCreator = (reducerName, reducerPath) => {
           [reducerPath]: {
             ...get(reducerPath)(state),
             error: get('payload')(action),
-            isLoading: false
-          }
+            isLoading: false,
+          },
         };
       }
       case get('set')(actionTypes): {
@@ -99,8 +99,8 @@ export const reducerCreator = (reducerName, reducerPath) => {
           ...state,
           [reducerPath]: {
             ...get(reducerPath)(state),
-            data: get('payload')(action)
-          }
+            data: get('payload')(action),
+          },
         };
       }
       default:
@@ -111,11 +111,13 @@ export const reducerCreator = (reducerName, reducerPath) => {
 
 export const rawSelectorCreator = (
   reducerName,
-  reducerSectionName
+  reducerSectionName,
 ) => attributeName => state =>
   flow(
     get(reducerName),
     get(reducerSectionName),
     get(genReducerPath(reducerSectionName)),
-    get(attributeName)
+    get(attributeName),
   )(state);
+
+export const getUserInfo = () => JSON.parse(localStorage.getItem('user'));
