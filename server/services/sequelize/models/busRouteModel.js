@@ -1,13 +1,13 @@
 import Sequelize from 'sequelize';
 import _ from 'lodash';
 
-import { sequelizeInstance } from '../index';
+import {sequelizeInstance} from '../index';
 
 import {
   randomBusID,
   randomDayAndTime,
   randomPlaceID,
-  randomSeatNumber
+  randomSeatNumber,
 } from '../../../utils';
 import TicketModel from './ticketModel';
 import BusModel from './busModel';
@@ -17,32 +17,32 @@ const BusRouteModel = sequelizeInstance.define('bus_route', {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
   },
   startPlaceID: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   endPlaceID: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   seatNumber: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   startTime: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   day: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   busID: {
     type: Sequelize.INTEGER,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
 
 // BusRouteModel

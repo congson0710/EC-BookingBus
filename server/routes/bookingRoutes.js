@@ -4,23 +4,19 @@ import Ticket from '../services/sequelize/models/ticketModel';
 import Booking from '../services/sequelize/models/bookingModel';
 
 const bookingRoutes = app => {
-  app.post('/api/:userID/book-ticket/:ticketID', async (req, res) => {
+  app.post('/api/book-ticket/', async (req, res) => {
     try {
-      console.log('params', req.params);
-      const { ticketID, userID } = req.params;
-      const result = await Ticket.update(
-        { status: 'SOLD' },
-        { where: { ticketID } }
-      );
+      console.log('params', req.body);
+      const {ticketID, userID} = req.body;
+      const result = await Ticket.update({status: 'SOLD'}, {where: {ticketID}});
 
       if (!isNil(result)) {
-        Booking.create({
+        const createBooking = await Booking.create({
           userID,
-          ticketID
+          ticketID,
         });
+        res.status(200).send('book ticket success!');
       }
-
-      res.status(200).send(result);
     } catch (error) {
       console.error(error);
     }

@@ -1,21 +1,21 @@
 import Sequelize from 'sequelize';
-import { sequelizeInstance } from '../index';
+import {sequelizeInstance} from '../index';
 
 const BookingModel = sequelizeInstance.define('booking', {
   bookingID: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
   },
   userID: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   ticketID: {
     type: Sequelize.INTEGER,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
 
-BookingModel.sync({ force: true });
+export default BookingModel;
