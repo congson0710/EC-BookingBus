@@ -1,5 +1,6 @@
 import { thunkBodyCreator } from '../share';
 import { SEARCH_TICKET, BOOK_TICKET } from './actionsTypes';
+import { history } from '..';
 
 export const fetchListTicketThunkCreator = (requestData) => dispatch => {
    const genQueryRoute = requestData =>
@@ -15,8 +16,12 @@ export const fetchListTicketThunkCreator = (requestData) => dispatch => {
   });
 };
 
-export const bookTicketThunkCreator = (requestData = {}) => dispatch => {
+export const bookTicketThunkCreator = (requestData = {}) => async dispatch => {
   const { ticketID } = requestData;
+  const user = localStorage.getItem('user');
+  if (!user) {
+    return history.push('/dang-nhap');
+  }
   thunkBodyCreator({
     dispatch,
     action: BOOK_TICKET,
@@ -24,4 +29,6 @@ export const bookTicketThunkCreator = (requestData = {}) => dispatch => {
     data: requestData,
     type: 'post'
   });
+
+  
 };
