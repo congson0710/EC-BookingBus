@@ -33,16 +33,16 @@ const UserModel = sequelizeInstance.define(
   }
 );
 
-UserModel.sync({ force: true }).then(() => {
-  _.times(100, () => {
-    return UserModel.create({
-      email: faker.internet.email(),
-      userPassword: faker.internet.password(),
-      userName: faker.name.findName(),
-      phone: faker.phone.phoneNumberFormat(),
-      roleID: randomRoleID()
-    });
-  });
-});
+// UserModel.sync({ force: true }).then(() => {
+//   _.times(100, () => {
+//     return UserModel.create({
+//       email: faker.internet.email(),
+//       userPassword: faker.internet.password(),
+//       userName: faker.name.findName(),
+//       phone: faker.phone.phoneNumberFormat(),
+//       roleID: randomRoleID()
+//     });
+//   });
+// });
 
 export default UserModel;

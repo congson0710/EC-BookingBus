@@ -34,6 +34,7 @@ export const registerThunkCreator = registerData => async dispatch => {
         type: USER_REGISTER_SUCCESS,
         payload: response.data
       });
+      history.push('/dang-nhap')
       notification.success({
         message: response.data.message,
         description: '',
@@ -67,6 +68,7 @@ export const loginThunkCreator = loginData => async dispatch => {
     setToken(data.token);
     localStorage.setItem('role', data.currentUser.roleID);
     localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.currentUser));
     history.push('/');
     notification.success({
       message: data.message,

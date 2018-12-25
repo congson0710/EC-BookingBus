@@ -1,5 +1,5 @@
 import includes from 'lodash/fp/includes';
-
+import { history } from '../index'
 import {
   FETCH_START_LIST_PLACE,
   FETCH_END_LIST_PLACE,
@@ -8,16 +8,15 @@ import {
 import { thunkBodyCreator } from '../share';
 
 export const searchTicketThunkCreator = (requestData = {}) => dispatch => {
-  const genQueryRoute = requestData =>
-    `/api/search-ticket?startPlace=${requestData.startPlace}&endPlace=${
-      requestData.endPlace
-    }&startDay=${requestData.startDay}`;
+  history.push(`danh-sach-ve-xe?startPlace=${requestData.startPlace}&endPlace=${
+    requestData.endPlace
+  }&startDay=${requestData.startDay}`)
 
   thunkBodyCreator({
     dispatch,
     action: SEARCH_TICKET,
-    route: genQueryRoute(requestData),
-    data: requestData,
+    // route: genQueryRoute(requestData),
+    data: {},
     type: 'get'
   });
 };

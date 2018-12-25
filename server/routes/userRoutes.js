@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import md5 from 'md5';
 
-import { userModel } from '../services/sequelize/models/userModel';
+import UserModel from '../services/sequelize/models/userModel';
 import { JWT } from '../config';
 import { getIdFromToken } from '../utils/auth';
 import { convertEntityToJSON } from '../lib/model';
@@ -11,7 +11,7 @@ const userRoute = app => {
     const { email, userPassword } = req.body;
     const hashPassword = md5(userPassword)
     try {
-      const currentUser = await userModel.findOne({
+      const currentUser = await UserModel.findOne({
         where: { email, userPassword: hashPassword },
         attributes: { exclude: ['userPassword'] },
         raw: true
@@ -31,7 +31,7 @@ const userRoute = app => {
   app.post('/api/register', async (req, res) => {
     const { email, password, phone, userName, userRole } = req.body;
     try {
-      const user = await userModel.findOne({
+      const user = await UserModel.findOne({
         where: { email },
         raw: true
       });
@@ -41,7 +41,7 @@ const userRoute = app => {
       if (!phone.match(/^[0-9]+$/)) {
         throw new Error('Invalid phone number.')
       }
-      await userModel.create({
+      await UserModel.create({
         email,
         userPassword: password,
         phone,
@@ -60,7 +60,7 @@ const userRoute = app => {
   app.post('/api/me', getIdFromToken, async (req, res) => {
     const { userID } = req.userID;
     try {
-      const user = await userModel.findOne({
+      const user = await UserModel.findOne({
         where: { userID },
         attributes: { exclude: ['userPassword'] },
         raw: true
@@ -79,7 +79,7 @@ const userRoute = app => {
     const { userName, phone, oldPassword, newPassword } = req.body;
     try {
       if (userName && phone) {
-        const user = await userModel.findOne({
+        const user = await UserModel.findOne({
           where: { userID },
           attributes: { exclude: ['userPassword'] }
         });
@@ -91,7 +91,7 @@ const userRoute = app => {
           .json({ message: 'Successfully!', ...convertEntityToJSON(user) })
           .end();
       } else {
-        const user = await userModel.findOne({
+        const user = await UserModel.findOne({
           where: { userID }
         });
         if (user.userPassword !== md5(oldPassword)) {

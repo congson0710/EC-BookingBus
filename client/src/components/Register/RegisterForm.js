@@ -6,6 +6,8 @@ import selectField from './selectFields';
 import { ROLE } from '../../common/const';
 
 const DEFAULT_CLASS_NAME = 'find_input';
+const minLength = min => value =>
+  value && value.length < min ? `Must be at least ${min} characters` : undefined
 
 const PureRegisterForm = ({ handleSubmit }) => (
   <Fragment>
@@ -26,6 +28,7 @@ const PureRegisterForm = ({ handleSubmit }) => (
         className={DEFAULT_CLASS_NAME}
         type="password"
         required
+        // validate={[minLength(6)]}
       />
       <Field
         name="reTypePassword"

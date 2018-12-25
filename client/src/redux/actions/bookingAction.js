@@ -1,12 +1,16 @@
 import { thunkBodyCreator } from '../share';
-import { FETCH_LIST_TICKET, BOOK_TICKET } from './actionsTypes';
+import { SEARCH_TICKET, BOOK_TICKET } from './actionsTypes';
 
-export const fetchListTicketThunkCreator = () => dispatch => {
+export const fetchListTicketThunkCreator = (requestData) => dispatch => {
+   const genQueryRoute = requestData =>
+    `/api/search-ticket?startPlace=${requestData.startPlace}&endPlace=${
+      requestData.endPlace
+    }&startDay=${requestData.startDay}`;
   thunkBodyCreator({
     dispatch,
-    action: FETCH_LIST_TICKET,
-    route: '/api/list-ticket-ket',
-    data: {},
+    action: SEARCH_TICKET,
+    route: genQueryRoute(requestData),
+    data: requestData,
     type: 'get'
   });
 };

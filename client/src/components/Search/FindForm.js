@@ -94,7 +94,6 @@ const prepareProps = mapProps(
         startDay: moment(new Date(data.startDay)).format('L')
       };
       onSearchRequest(newData);
-      history.push('danh-sach-ve-xe');
     },
     ...otherProps
   })
