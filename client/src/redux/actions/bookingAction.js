@@ -1,18 +1,27 @@
 import { thunkBodyCreator } from '../share';
-import { FETCH_LIST_TICKET, BOOK_TICKET } from './actionsTypes';
+import { SEARCH_TICKET, BOOK_TICKET } from './actionsTypes';
+import { history } from '..';
 
-export const fetchListTicketThunkCreator = () => dispatch => {
+export const fetchListTicketThunkCreator = (requestData) => dispatch => {
+   const genQueryRoute = requestData =>
+    `/api/search-ticket?startPlace=${requestData.startPlace}&endPlace=${
+      requestData.endPlace
+    }&startDay=${requestData.startDay}`;
   thunkBodyCreator({
     dispatch,
-    action: FETCH_LIST_TICKET,
-    route: '/api/list-ticket-ket',
-    data: {},
+    action: SEARCH_TICKET,
+    route: genQueryRoute(requestData),
+    data: requestData,
     type: 'get'
   });
 };
 
-export const bookTicketThunkCreator = (requestData = {}) => dispatch => {
+export const bookTicketThunkCreator = (requestData = {}) => async dispatch => {
   const { ticketID } = requestData;
+  const user = localStorage.getItem('user');
+  if (!user) {
+    return history.push('/dang-nhap');
+  }
   thunkBodyCreator({
     dispatch,
     action: BOOK_TICKET,
@@ -20,4 +29,6 @@ export const bookTicketThunkCreator = (requestData = {}) => dispatch => {
     data: requestData,
     type: 'post'
   });
+
+  
 };

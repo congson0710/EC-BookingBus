@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import eq from 'lodash/fp/eq';
 import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
@@ -38,7 +38,7 @@ const PureRow = ({
   bookTicket,
   isBooking
 }) => (
-  <div>
+  <Fragment>
     {isBooking ? (
       <Spinner size={60} style={styles.spinner} />
     ) : (
@@ -62,7 +62,7 @@ const PureRow = ({
         </td>
       </tr>
     )}
-  </div>
+  </Fragment>
 );
 
 const connectToRedux = connect(
