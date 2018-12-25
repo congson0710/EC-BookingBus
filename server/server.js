@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import routes from './routes';
 import { sequelizeInstance } from './services/sequelize';
+import RoleID from './services/sequelize/models/roleModel';
 import './services/sequelize/associations';
 
 sequelizeInstance
