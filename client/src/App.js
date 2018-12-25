@@ -9,6 +9,7 @@ import ListTicketPage from './components/pages/ListTicket';
 import BookingTicket from './components/pages/BookingTicket';
 import CheckTicket from './components/pages/CheckTicket';
 import BusRouteManagement from './components/pages/BusRouteManagement';
+import Admin from './components/pages/Admin';
 import Payment from './components/pages/Payment';
 import { history } from './redux';
 import Auth from './lib/auth';
@@ -28,6 +29,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <React.Fragment>
+          <Route path="/admin" component={Admin}/>
           <Route exact path="/" component={Home} />
           <Route
             exact

@@ -1,0 +1,29 @@
+.left-panel {
+  background: #131a2f;
+  min-height: 100vh;
+  height: 100%;
+}
+.admin-container {
+  padding: 20px 10px;
+  background: rgb(233, 233, 233);
+  min-height: calc(100vh - 60px);
+}
+.admin-board {
+  background: #fff;
+  padding: 20px;
+}
+.admin-header {
+  height: 60px;
+}
+
+.admin-menu {
+  padding-top: 40px;
+}
+.admin-menu__link {
+  display: block;
+  color: #fff;
+  padding: 15px 20px;
+  &.active {
+    background: #18213b;
+  }
+}
