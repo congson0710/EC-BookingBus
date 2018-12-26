@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import AdminHeader from './AdminHeader';
 
 function AdminLayout({ children }) {
   return (
     <div className="row no-gutters">
-      <div className="col-3">
+      <div className="col-2">
         <div className="left-panel">
           <ul className="admin-menu">
             <li className="admin-menu__item">
@@ -47,8 +48,8 @@ function AdminLayout({ children }) {
           </ul>
         </div>
       </div>
-      <div className="col-9">
-        <div className="admin-header">Tran mac tien</div>
+      <div className="col-10">
+        <AdminHeader />
         <div className="admin-container">
           <div className="admin-board">{children}</div>
         </div>

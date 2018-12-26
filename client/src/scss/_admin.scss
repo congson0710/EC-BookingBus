@@ -4,7 +4,7 @@
   height: 100%;
 }
 .admin-container {
-  padding: 20px 10px;
+  padding: 20px;
   background: rgb(233, 233, 233);
   min-height: calc(100vh - 60px);
 }
@@ -14,6 +14,18 @@
 }
 .admin-header {
   height: 60px;
+  padding-right: 20px;
+}
+
+.admin-header-list {
+  min-width: 160px;
+  li {
+    cursor: pointer;
+    padding: 10px 0;
+    &:hover {
+      color: #131a2f;
+    }
+  }
 }
 
 .admin-menu {
@@ -26,4 +38,8 @@
   &.active {
     background: #18213b;
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
