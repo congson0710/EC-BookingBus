@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import get from 'lodash/fp/get';
 import {connect} from 'react-redux';
 import flow from 'lodash/fp/flow';
 import lifecycle from 'recompose/lifecycle';
 import compose from 'recompose/compose';
 import eq from 'lodash/fp/eq';
+import Spinner from 'react-md-spinner';
 
 import {
   fetchListBookedTicketThunkCreator,
@@ -146,7 +147,7 @@ const ColumnHeader = () => (
   </tr>
 );
 
-const PureHistory = ({listBookedTicket, cancelTicket}) => (
+const PureTable = ({listBookedTicket, cancelTicket}) => (
   <table className="table table-custom">
     <tbody>
       <ColumnHeader />
@@ -160,6 +161,10 @@ const PureHistory = ({listBookedTicket, cancelTicket}) => (
         ))}
     </tbody>
   </table>
+);
+
+const PureHistory = ({listBookedTicket, cancelTicket}) => (
+  <PureTable listBookedTicket={listBookedTicket} cancelTicket={cancelTicket} />
 );
 
 const connectToRedux = connect(

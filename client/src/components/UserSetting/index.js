@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
+import Spinner from 'react-md-spinner';
 import {Tabs} from 'antd';
+import {connect} from 'react-redux';
 
 import EditProfileForm from './EditProfile';
 import ChangePasswordForm from './ChangePassword';
 import History from './History';
+import {isCancelingTicketSelector} from '../../redux/selectors/userSelectors';
 
 class UserSetting extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const {TabPane} = Tabs;
     return (
@@ -20,7 +27,11 @@ class UserSetting extends Component {
                 <ChangePasswordForm />
               </TabPane>
               <TabPane tab="Lịch sử đặt, hủy vé" key="3">
-                <History />
+                {this.props.isCancelingTicket ? (
+                  <Spinner size={60} style={{textAlign: 'center'}} />
+                ) : (
+                  <History />
+                )}
               </TabPane>
             </Tabs>
           </div>
@@ -30,4 +41,11 @@ class UserSetting extends Component {
   }
 }
 
-export default UserSetting;
+const connectToRedux = connect(
+  state => ({
+    isCancelingTicket: isCancelingTicketSelector(state),
+  }),
+  null,
+);
+
+export default connectToRedux(UserSetting);
