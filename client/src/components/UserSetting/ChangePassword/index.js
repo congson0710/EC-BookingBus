@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {updatePassword} from '../redux/actions/userAction';
+import {updatePassword} from '../../../redux/actions/userAction';
 import {notification} from 'antd';
 
 function mapDispatchToProps(dispatch) {

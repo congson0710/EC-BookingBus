@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Router, Route} from 'react-router-dom';
 
 import Home from './components/pages/Home';
-import EditProfile from './components/pages/EditProfile';
+// import EditProfile from './components/pages/EditProfile';
+import UserSetting from './components/pages/UserSetting';
 import LoginPage from './components/pages/Login';
 import RegisterPage from './components/pages/Register';
 import ListTicketPage from './components/pages/ListTicket';
@@ -10,11 +11,11 @@ import BookingTicket from './components/pages/BookingTicket';
 import CheckTicket from './components/pages/CheckTicket';
 import BusRouteManagement from './components/pages/BusRouteManagement';
 import Payment from './components/pages/Payment';
-import { history } from './redux';
+import {history} from './redux';
 import Auth from './lib/auth';
-import { ROLE } from './common/const';
+import {ROLE} from './common/const';
 import WithAuthorization from './components/AuthHOC';
-import { setToken } from './axios';
+import {setToken} from './axios';
 
 import './App.scss';
 
@@ -33,7 +34,7 @@ class App extends Component {
             exact
             path="/chinh-sua-thong-tin"
             component={WithAuthorization([ROLE.CLIENT, ROLE.ADMIN])(
-              EditProfile
+              UserSetting,
             )}
           />
           <Route
@@ -49,7 +50,10 @@ class App extends Component {
           <Route path="/danh-sach-ve-xe" component={ListTicketPage} />
           <Route path="/dat-ve" component={BookingTicket} />
           <Route path="/kiem-tra-ve" component={CheckTicket} />
-          <Route path="/quan-li-chuyen-xe" component={WithAuthorization([ROLE.COMPANY])(BusRouteManagement)} />
+          <Route
+            path="/quan-li-chuyen-xe"
+            component={WithAuthorization([ROLE.COMPANY])(BusRouteManagement)}
+          />
           <Route path="/thanh-toan" component={Payment} />
         </React.Fragment>
       </Router>

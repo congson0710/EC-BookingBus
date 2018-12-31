@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Menu from '../Menu';
 import EditProfileComponent from '../EditProfileComponent';
+import UserSetting from '../UserSetting';
 import Footer from '../Footer';
 
 class EditProfile extends Component {
@@ -9,7 +10,7 @@ class EditProfile extends Component {
     return (
       <React.Fragment>
         <Menu />
-        <EditProfileComponent />
+        <UserSetting />
         <Footer />
       </React.Fragment>
     );

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Tabs} from 'antd';
 
-import EditProfileForm from './EditProfileForm';
-import ChangePasswordForm from './ChangePasswordForm';
+import EditProfileForm from './EditProfile';
+import ChangePasswordForm from './ChangePassword';
+import History from './History';
 
-class EditProfileComponent extends Component {
+class UserSetting extends Component {
   render() {
     const {TabPane} = Tabs;
     return (
@@ -19,7 +20,7 @@ class EditProfileComponent extends Component {
                 <ChangePasswordForm />
               </TabPane>
               <TabPane tab="Lịch sử đặt, hủy vé" key="3">
-                Content of Tab Pane 2
+                <History />
               </TabPane>
             </Tabs>
           </div>
@@ -29,4 +30,4 @@ class EditProfileComponent extends Component {
   }
 }
 
-export default EditProfileComponent;
+export default UserSetting;

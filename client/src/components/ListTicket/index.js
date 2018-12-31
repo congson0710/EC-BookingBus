@@ -1,63 +1,65 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import lifecycle from 'recompose/lifecycle';
 import compose from 'recompose/compose';
 import flow from 'lodash/fp/flow';
 import Spinner from 'react-md-spinner';
-import { withRouter } from 'react-router';
+import {withRouter} from 'react-router';
 import queryString from 'query-string';
 import moment from 'moment';
 
 import ListTicketTable from './Table';
-import { fetchListTicketThunkCreator } from '../../redux/actions/bookingAction';
+import {fetchListTicketThunkCreator} from '../../redux/actions/bookingAction';
 import {
   isSearchingTicketSelector,
-  searchTicketDataSelector
+  searchTicketDataSelector,
 } from '../../redux/selectors/searchingSelectors';
 
 const columns = [
   {
     name: 'Nhà xe',
-    type: 'col'
+    type: 'col',
   },
   {
     name: 'Nơi đi',
-    type: 'col'
+    type: 'col',
   },
   {
     name: 'Nơi đến',
-    type: 'col'
+    type: 'col',
   },
   {
     name: 'Số ghế',
-    type: 'col'
+    type: 'col',
   },
   {
     name: 'Thời gian',
-    type: 'col'
+    type: 'col',
   },
   {
     name: 'Giá vé',
-    type: 'col'
+    type: 'col',
   },
   {
     name: 'Tình trạng',
-    type: 'col'
+    type: 'col',
   },
   {
     name: '',
-    type: 'actionCell'
-  }
+    type: 'actionCell',
+  },
 ];
 
 const styles = {
   spinnerStyle: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 };
 
-const PureListTicket = ({ isSearching, listTicket, location }) => {
-  const day = moment(moment(queryString.parse(location.search).startDay, 'MM/DD/YYYY')).format('DD/MM/YYYY');
+const PureListTicket = ({isSearching, listTicket, location}) => {
+  const day = moment(
+    moment(queryString.parse(location.search).startDay, 'MM/DD/YYYY'),
+  ).format('DD/MM/YYYY');
   return (
     <div className="body-section">
       <div className="list-ticket-container">
@@ -81,27 +83,27 @@ const PureListTicket = ({ isSearching, listTicket, location }) => {
 const connectToRedux = connect(
   state => ({
     isSearching: isSearchingTicketSelector(state),
-    listTicket: searchTicketDataSelector(state)
+    listTicket: searchTicketDataSelector(state),
   }),
   dispatch => ({
     fetchListTicket: flow(
       fetchListTicketThunkCreator,
-      dispatch
-    )
-  })
+      dispatch,
+    ),
+  }),
 );
 
 const lifecycleHOC = lifecycle({
   componentDidMount() {
     const params = queryString.parse(this.props.location.search);
     this.props.fetchListTicket(params);
-  }
+  },
 });
 
 const enhance = compose(
   withRouter,
   connectToRedux,
-  lifecycleHOC
+  lifecycleHOC,
 );
 
 export default enhance(PureListTicket);
