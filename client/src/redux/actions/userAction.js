@@ -1,7 +1,7 @@
-import { notification } from 'antd';
+import {notification} from 'antd';
 
-import axios, { setToken } from '../../axios';
-import { history } from '../index';
+import axios, {setToken} from '../../axios';
+import {history} from '../index';
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -18,13 +18,15 @@ import {
   LOGOUT,
   CHANGE_PASWORD,
   CHANGE_PASWORD_SUCCESS,
-  CHANGE_PASWORD_FAIL
+  CHANGE_PASWORD_FAIL,
+  FETCH_LIST_BOOKED_TICKET,
 } from './actionsTypes';
 import Auth from '../../lib/auth';
+import {thunkBodyCreator, getUserInfo} from '../share';
 
 export const registerThunkCreator = registerData => async dispatch => {
   dispatch({
-    type: USER_REGISTER_REQUEST
+    type: USER_REGISTER_REQUEST,
   });
 
   try {
@@ -32,38 +34,38 @@ export const registerThunkCreator = registerData => async dispatch => {
     if (response) {
       dispatch({
         type: USER_REGISTER_SUCCESS,
-        payload: response.data
+        payload: response.data,
       });
-      history.push('/dang-nhap')
+      history.push('/dang-nhap');
       notification.success({
         message: response.data.message,
         description: '',
-        duration: 2
+        duration: 2,
       });
     }
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload: error
+      payload: error,
     });
     notification.error({
       message: 'Register fail',
       description: error.response.data.message,
-      duration: 2
+      duration: 2,
     });
   }
 };
 
 export const loginThunkCreator = loginData => async dispatch => {
   dispatch({
-    type: USER_LOGIN_REQUEST
+    type: USER_LOGIN_REQUEST,
   });
 
   try {
-    const { data } = await axios.post('/api/login', loginData);
+    const {data} = await axios.post('/api/login', loginData);
     dispatch({
       type: USER_LOGIN_SUCCESS,
-      payload: data
+      payload: data,
     });
     setToken(data.token);
     localStorage.setItem('role', data.currentUser.roleID);
@@ -73,91 +75,107 @@ export const loginThunkCreator = loginData => async dispatch => {
     notification.success({
       message: data.message,
       description: '',
-      duration: 2
+      duration: 2,
     });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload: error.response.data.message
+      payload: error.response.data.message,
     });
     notification.error({
       message: 'Login fail',
       description: error.response.data.message,
-      duration: 2
+      duration: 2,
     });
   }
 };
 
 export const logoutThunkCreator = () => dispatch => {
   dispatch({
-    type: LOGOUT
+    type: LOGOUT,
   });
   Auth.logout();
 };
 
 export const fetchUserInfo = () => async dispatch => {
   dispatch({
-    type: FETCH_USER_INFO
+    type: FETCH_USER_INFO,
   });
   try {
     const data = await Auth.getUserInfo();
     dispatch({
       type: FETCH_USER_INFO_SUCCESS,
-      payload: data
+      payload: data,
     });
   } catch (err) {
     dispatch({
       type: FETCH_USER_INFO_FAIL,
-      payload: {}
+      payload: {},
     });
   }
 };
 
 export const setUserInfo = data => async dispatch => {
   dispatch({
-    type: SET_USER_INFO
+    type: SET_USER_INFO,
   });
   try {
     const userUpdate = await axios.patch('/api/user/update', data);
     dispatch({
       type: SET_USER_INFO_SUCCESS,
-      payload: userUpdate.data
+      payload: userUpdate.data,
     });
     notification.success({
       message: userUpdate.data.message,
-      duration: 2
+      duration: 2,
     });
   } catch (err) {
     dispatch({
-      type: SET_USER_INFO_FAIL
+      type: SET_USER_INFO_FAIL,
     });
     notification.error({
       message: err.response.data.message,
-      duration: 2
+      duration: 2,
     });
   }
 };
 
 export const updatePassword = data => async dispatch => {
   dispatch({
-    type: CHANGE_PASWORD
+    type: CHANGE_PASWORD,
   });
   try {
     const response = await axios.patch('/api/user/update', data);
     dispatch({
-      type: CHANGE_PASWORD_SUCCESS
+      type: CHANGE_PASWORD_SUCCESS,
     });
     notification.success({
       message: response.data.message,
-      duration: 2
+      duration: 2,
     });
   } catch (err) {
     dispatch({
-      type: CHANGE_PASWORD_FAIL
+      type: CHANGE_PASWORD_FAIL,
     });
     notification.error({
       message: err.response.data.message,
-      duration: 2
+      duration: 2,
     });
   }
+};
+
+export const fetchListBookedTicketThunkCreator = (
+  requestData = {},
+) => dispatch => {
+  const user = getUserInfo();
+  if (!user) {
+    return history.push('/dang-nhap');
+  }
+  thunkBodyCreator({
+    dispatch,
+    action: FETCH_LIST_BOOKED_TICKET,
+    route: `/api/${user.userID}/list-booked-ticket`,
+    data: {},
+    type: 'get',
+  });
 };

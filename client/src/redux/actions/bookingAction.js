@@ -20,7 +20,6 @@ export const fetchListTicketThunkCreator = requestData => dispatch => {
 };
 
 export const bookTicketThunkCreator = (requestData = {}) => async dispatch => {
-  const {ticketID} = requestData;
   const user = getUserInfo();
   if (!user) {
     return history.push('/dang-nhap');
