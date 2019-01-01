@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {fetchUserInfo, setUserInfo} from '../redux/actions/userAction';
+import {fetchUserInfo, setUserInfo} from '../../../redux/actions/userAction';
 
 function mapStateToProps(state) {
   return {

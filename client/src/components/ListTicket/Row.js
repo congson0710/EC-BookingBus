@@ -1,12 +1,13 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import eq from 'lodash/fp/eq';
 import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Spinner from 'react-md-spinner';
+import queryString from 'query-string';
 
-import { isBookingSelector } from '../../redux/selectors/bookingSelectors';
-import { bookTicketThunkCreator } from '../../redux/actions/bookingAction';
+import {isBookingSelector} from '../../redux/selectors/bookingSelectors';
+import {bookTicketThunkCreator} from '../../redux/actions/bookingAction';
 
 const TICKET_STATUS = 'SOLD';
 const isTicketSold = eq(TICKET_STATUS);
@@ -14,29 +15,31 @@ const getBusCompanyName = busRoute =>
   flow(
     get('bus'),
     get('bus_company'),
-    get('companyName')
+    get('companyName'),
   )(busRoute);
 
 const getStartPlace = busRoute =>
   flow(
     get('startPlace'),
-    get('placeName')
+    get('placeName'),
   )(busRoute);
+
 const getEndPlace = busRoute =>
   flow(
     get('endPlace'),
-    get('placeName')
+    get('placeName'),
   )(busRoute);
+
 const styles = {
   spinner: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 };
 
 const PureRow = ({
-  row: { ticketID, bus_route, status, price },
+  row: {ticketID, bus_route, status, price},
   bookTicket,
-  isBooking
+  isBooking,
 }) => (
   <Fragment>
     {isBooking ? (
@@ -54,8 +57,11 @@ const PureRow = ({
           {!isTicketSold(status) ? (
             <button
               className="btn btn-danger"
-              onClick={() => bookTicket({ ticketID })}
-            >
+              onClick={async () => {
+                await bookTicket({ticketID});
+                const params = queryString.parse(this.props.location.search);
+                this.props.fetchListTicket(params);
+              }}>
               Mua vé
             </button>
           ) : null}
@@ -67,14 +73,14 @@ const PureRow = ({
 
 const connectToRedux = connect(
   state => ({
-    isBooking: isBookingSelector(state)
+    isBooking: isBookingSelector(state),
   }),
   dispatch => ({
     bookTicket: flow(
       bookTicketThunkCreator,
-      dispatch
-    )
-  })
-)
+      dispatch,
+    ),
+  }),
+);
 
 export default connectToRedux(PureRow);
