@@ -21,7 +21,11 @@ const PureListTicket = ({location, isSearching, isBooking}) => {
           <h1 className="text-white text-center mb-5">
             {`Danh sách vé ngày ${day}`}
           </h1>
-          {isBooking ? <Spinner /> : <ListTicketTable />}
+          {isBooking ? (
+            <Spinner size={60} style={{textAlign: 'center'}} />
+          ) : (
+            <ListTicketTable />
+          )}
         </div>
       </div>
     </div>
