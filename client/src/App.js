@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Router, Route} from 'react-router-dom';
 
 import Home from './components/pages/Home';
-// import EditProfile from './components/pages/EditProfile';
 import UserSetting from './components/pages/UserSetting';
 import LoginPage from './components/pages/Login';
 import RegisterPage from './components/pages/Register';
@@ -54,7 +53,11 @@ class App extends Component {
             path="/quan-li-chuyen-xe"
             component={WithAuthorization([ROLE.COMPANY])(BusRouteManagement)}
           />
-          <Route path="/thanh-toan" component={Payment} />
+          <Route
+            exact
+            path="/thanh-toan"
+            component={WithAuthorization([ROLE.CLIENT])(Payment)}
+          />
         </React.Fragment>
       </Router>
     );
