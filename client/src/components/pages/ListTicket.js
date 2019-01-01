@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Menu from '../Menu';
 import Footer from '../Footer';
 import ListTicketComponent from '../ListTicket';
 
 class ListTicketPage extends Component {
-  state = {};
   render() {
     return (
       <React.Fragment>
