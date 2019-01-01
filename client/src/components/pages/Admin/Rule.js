@@ -4,7 +4,7 @@ class Rule extends Component {
   render() {
     return (
       <div>
-        <h2>Chính sách đặt/hủy vé</h2>
+        <h3 className="text-center">Chính sách đặt/hủy vé</h3>
         <p>*Đây là chính sách riêng của website khi khách hàng muốn thực hiện đổi trả hoặc hoàn tiền vé.</p>
         <p>*Chính sách đổi trả/hoàn tiền của từng hãng xe có thể khác nhau và khác so với chính sách của website được liệt kê dưới đây</p>
         <p>Quy định về chính sách trả/hủy vé, hủy chuyến, lỡ chuyến và các dịch vụ trên xe  (chỉ áp dụng cho các Vé Có Hiệu Lực)</p>
