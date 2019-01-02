@@ -8,7 +8,7 @@ import BusRouteModel from '../services/sequelize/models/busRouteModel';
 import TicketModel from '../services/sequelize/models/ticketModel';
 import PlaceModel from '../services/sequelize/models/placeModel';
 import BusModel from '../services/sequelize/models/busModel';
-import BusCompanyModel from '../services/sequelize/models/BusCompanyModel';
+import BusCompanyModel from '../services/sequelize/models/busCompanyModel';
 import {JWT} from '../config';
 import {getIdFromToken} from '../utils/auth';
 import {convertEntityToJSON} from '../lib/model';
