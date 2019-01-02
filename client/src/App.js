@@ -34,7 +34,7 @@ class App extends Component {
           <Route
             exact
             path="/chinh-sua-thong-tin"
-            component={WithAuthorization([ROLE.CLIENT, ROLE.ADMIN])(
+            component={WithAuthorization([ROLE.CLIENT])(
               UserSetting,
             )}
           />
@@ -53,7 +53,7 @@ class App extends Component {
           <Route path="/kiem-tra-ve" component={CheckTicket} />
           <Route
             path="/quan-li-chuyen-xe"
-            component={WithAuthorization([ROLE.COMPANY])(BusRouteManagement)}
+            component={WithAuthorization([ROLE.CLIENT])(BusRouteManagement)}
           />
           <Route
             exact

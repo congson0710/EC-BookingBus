@@ -3,12 +3,25 @@ import { notification } from 'antd';
 import { Link } from 'react-router-dom';
 import axios, { setToken } from '../../../axios';
 import { history } from '../../../redux/index';
+import Auth from '../../../lib/auth';
+import { ROLE } from '../../../common/const';
 
 class AdminLogin extends Component {
-  state = {
-    username: '',
-    password: ''
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
+    this._checkLogin();
+  }
+
+  _checkLogin() {
+    if (Auth.getUserRole() === ROLE.COMPANY) {
+      history.replace('/admin/tra-cuu-thong-tin');
+    }
+  }
+
   _handleChange = e => {
     const { value, name } = e.target;
     this.setState({
