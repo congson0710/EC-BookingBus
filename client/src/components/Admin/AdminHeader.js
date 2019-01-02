@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Popover, Avatar } from 'antd';
+import { logoutThunkCreator } from '../../redux/actions/userAction';
 
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => dispatch(logoutThunkCreator())
+  };
+}
 class AdminHeader extends Component {
   state = {
     visible: false
@@ -13,7 +20,7 @@ class AdminHeader extends Component {
     return (
       <ul className="admin-header-list">
         <li>Thông tin</li>
-        <li>Đăng xuất</li>
+        <li onClick={this.props.logout}>Đăng xuất</li>
       </ul>
     );
   };
@@ -34,4 +41,4 @@ class AdminHeader extends Component {
   }
 }
 
-export default AdminHeader;
+export default connect(null, mapDispatchToProps)(AdminHeader);

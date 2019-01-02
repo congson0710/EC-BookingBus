@@ -36,7 +36,6 @@ class AdminLogin extends Component {
         username,
         password
       });
-      history.push('/admin/tra-cuu-thong-tin');
       setToken(data.token);
       localStorage.setItem('role', data.currentUser.roleID);
       localStorage.setItem('token', data.token);
@@ -46,6 +45,7 @@ class AdminLogin extends Component {
         description: '',
         duration: 2
       });
+      history.push('/admin/tra-cuu-thong-tin');
     } catch (error) {
       notification.error({
         message: 'Login fail',

@@ -6,28 +6,38 @@ import CheckInformation from './CheckInformation';
 import ScheduleBusRoute from './ScheduleBusRoute';
 import AdminLogin from './AdminLogin';
 import Rule from './Rule';
+import WithAuthorization from '../../AuthHOC';
+import { ROLE } from '../../../common/const';
 
 function Admin({ match }) {
   return (
     <Fragment>
-      <Route
-        exact
-        path={match.url + '/'}
-        component={AdminLogin}
-      />
+      <Route exact path={match.url + '/'} component={AdminLogin} />
       <Route
         exact
         path={match.url + '/tra-cuu-thong-tin'}
-        component={CheckInformation}
+        component={WithAuthorization([ROLE.COMPANY])(CheckInformation)}
       />
-      <Route exact path={match.url + '/quy-dinh-nha-xe'} component={Rule} />
+      <Route
+        exact
+        path={match.url + '/quy-dinh-nha-xe'}
+        component={WithAuthorization([ROLE.COMPANY])(Rule)}
+      />
       <Route
         exact
         path={match.url + '/quan-ly-lich-xe'}
-        component={ScheduleBusRoute}
+        component={WithAuthorization([ROLE.COMPANY])(ScheduleBusRoute)}
       />
-      <Route exact path={match.url + '/quan-ly-dat-huy'} component={Rule} />
-      <Route exact path={match.url + '/bao-cao-thsong-ke'} component={Rule} />
+      <Route
+        exact
+        path={match.url + '/quan-ly-dat-huy'}
+        component={WithAuthorization([ROLE.COMPANY])(Rule)}
+      />
+      <Route
+        exact
+        path={match.url + '/bao-cao-thsong-ke'}
+        component={WithAuthorization([ROLE.COMPANY])(Rule)}
+      />
     </Fragment>
   );
 }
