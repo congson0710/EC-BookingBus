@@ -4,6 +4,7 @@ import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
 import {connect} from 'react-redux';
 
+import {history} from '../../redux';
 import {isBookingSelector} from '../../redux/selectors/bookingSelectors';
 import {bookTicketThunkCreator} from '../../redux/actions/bookingAction';
 
@@ -41,8 +42,9 @@ const PureRow = ({row: {ticketID, bus_route, status, price}, bookTicket}) => (
       {!isTicketSold(status) ? (
         <button
           className="btn btn-danger"
-          onClick={() => {
-            bookTicket({ticketID});
+          onClick={async () => {
+            await bookTicket({ticketID});
+            history.push(`/thanh-toan?ticketID=${ticketID}`);
           }}>
           Mua vé
         </button>

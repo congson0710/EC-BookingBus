@@ -1,11 +1,10 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import get from 'lodash/fp/get';
 import {connect} from 'react-redux';
 import flow from 'lodash/fp/flow';
 import lifecycle from 'recompose/lifecycle';
 import compose from 'recompose/compose';
 import eq from 'lodash/fp/eq';
-import Spinner from 'react-md-spinner';
 
 import {
   fetchListBookedTicketThunkCreator,
