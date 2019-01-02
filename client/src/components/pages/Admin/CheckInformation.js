@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
+import AdminLayout from '../../Admin/AdminLayout';
 class CheckInformation extends Component {
   render() {
     return (
-      <div>
+      <AdminLayout>
         <div className="row">
           <div className="col-6">
             <Card title="Quản lý xe" bordered>
@@ -23,7 +24,7 @@ class CheckInformation extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 }

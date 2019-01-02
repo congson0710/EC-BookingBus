@@ -145,6 +145,26 @@ const userRoute = app => {
         .end();
     }
   });
+  app.post('/api/login-admin', async (req, res) => {
+    const {username, password} = req.body;
+    const hashPassword = md5(password);
+    try {
+      const currentUser = await UserModel.findOne({
+        where: {email: username, userPassword: hashPassword, roleID: 2},
+        attributes: {exclude: ['userPassword']},
+        raw: true,
+      });
+      if (currentUser) {
+        const token = jwt.sign({userID: currentUser.userID}, JWT.secret);
+        return res.json({currentUser, token, message: 'Login successfully!'});
+      }
+      throw new Error('Incorrect email or password.');
+    } catch (error) {
+      return res
+        .status(401)
+        .json({message: error.message || 'Unexpected error.'});
+    }
+  });
 
   app.patch('/api/user/update', getIdFromToken, async (req, res) => {
     const {userID} = req.userID;

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
+import AdminLayout from '../../Admin/AdminLayout';
 class ScheduleBusRoute extends Component {
   render() {
     return (
-      <Card title="Lịch trình tuyến xe" bordered>
-        Card content
-      </Card>
+      <AdminLayout>
+        <Card title="Lịch trình tuyến xe" bordered>
+          Card content
+        </Card>
+      </AdminLayout>
     );
   }
 }
