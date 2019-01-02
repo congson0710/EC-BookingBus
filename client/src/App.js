@@ -9,6 +9,7 @@ import ListTicketPage from './components/pages/ListTicket';
 import BookingTicket from './components/pages/BookingTicket';
 import CheckTicket from './components/pages/CheckTicket';
 import BusRouteManagement from './components/pages/BusRouteManagement';
+import Admin from './components/pages/Admin/Admin';
 import Payment from './components/pages/Payment';
 import {history} from './redux';
 import Auth from './lib/auth';
@@ -28,11 +29,12 @@ class App extends Component {
     return (
       <Router history={history}>
         <React.Fragment>
+          <Route path="/admin" component={Admin}/>
           <Route exact path="/" component={Home} />
           <Route
             exact
             path="/chinh-sua-thong-tin"
-            component={WithAuthorization([ROLE.CLIENT, ROLE.ADMIN])(
+            component={WithAuthorization([ROLE.CLIENT])(
               UserSetting,
             )}
           />
@@ -51,7 +53,7 @@ class App extends Component {
           <Route path="/kiem-tra-ve" component={CheckTicket} />
           <Route
             path="/quan-li-chuyen-xe"
-            component={WithAuthorization([ROLE.COMPANY])(BusRouteManagement)}
+            component={WithAuthorization([ROLE.CLIENT])(BusRouteManagement)}
           />
           <Route
             exact

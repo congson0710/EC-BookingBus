@@ -8,7 +8,7 @@ import BusRouteModel from '../services/sequelize/models/busRouteModel';
 import TicketModel from '../services/sequelize/models/ticketModel';
 import PlaceModel from '../services/sequelize/models/placeModel';
 import BusModel from '../services/sequelize/models/busModel';
-import BusCompanyModel from '../services/sequelize/models/BusCompanyModel';
+import BusCompanyModel from '../services/sequelize/models/busCompanyModel';
 import {JWT} from '../config';
 import {getIdFromToken} from '../utils/auth';
 import {convertEntityToJSON} from '../lib/model';
@@ -81,10 +81,10 @@ const userRoute = app => {
 
   app.post('/api/login', async (req, res) => {
     const {email, userPassword} = req.body;
-    // const hashPassword = md5(userPassword);
+    const hashPassword = md5(userPassword);
     try {
       const currentUser = await UserModel.findOne({
-        where: {email, userPassword},
+        where: {email, userPassword: hashPassword},
         attributes: {exclude: ['userPassword']},
         raw: true,
       });
@@ -143,6 +143,26 @@ const userRoute = app => {
         .status(403)
         .send('Unauthorize!')
         .end();
+    }
+  });
+  app.post('/api/login-admin', async (req, res) => {
+    const {username, password} = req.body;
+    const hashPassword = md5(password);
+    try {
+      const currentUser = await UserModel.findOne({
+        where: {email: username, userPassword: hashPassword, roleID: 2},
+        attributes: {exclude: ['userPassword']},
+        raw: true,
+      });
+      if (currentUser) {
+        const token = jwt.sign({userID: currentUser.userID}, JWT.secret);
+        return res.json({currentUser, token, message: 'Login successfully!'});
+      }
+      throw new Error('Incorrect email or password.');
+    } catch (error) {
+      return res
+        .status(401)
+        .json({message: error.message || 'Unexpected error.'});
     }
   });
 
