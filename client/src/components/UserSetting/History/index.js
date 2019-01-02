@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import get from 'lodash/fp/get';
 import {connect} from 'react-redux';
 import flow from 'lodash/fp/flow';
 import lifecycle from 'recompose/lifecycle';
 import compose from 'recompose/compose';
 import eq from 'lodash/fp/eq';
+import Spinner from 'react-md-spinner';
 
-import {fetchListBookedTicketThunkCreator} from '../../../redux/actions/userAction';
+import {
+  fetchListBookedTicketThunkCreator,
+  cancelTicketThunkCreator,
+} from '../../../redux/actions/userAction';
 import {fetchListBookedTicketSelector} from '../../../redux/selectors/userSelectors';
 
 const columns = [
@@ -98,7 +102,13 @@ const getTime = rowData =>
     get('startTime'),
   )(rowData);
 
-const Row = ({rowData}) => (
+const getTicketID = rowData =>
+  flow(
+    get('ticket'),
+    get('ticketID'),
+  )(rowData);
+
+const Row = ({rowData, cancelTicket}) => (
   <tr>
     <td>{getBusCompanyName(rowData)}</td>
     <td>{getStartPlace(rowData)}</td>
@@ -119,7 +129,11 @@ const Row = ({rowData}) => (
         getStatus,
         isBookedTicket,
       )(rowData) ? (
-        <button className="btn btn-danger">Hủy vé</button>
+        <button
+          className="btn btn-danger"
+          onClick={() => cancelTicket({ticketID: getTicketID(rowData)})}>
+          Hủy vé
+        </button>
       ) : null}
     </td>
   </tr>
@@ -128,21 +142,29 @@ const Row = ({rowData}) => (
 const ColumnHeader = () => (
   <tr>
     {columns.map(column => (
-      <td>{get('name')(column)}</td>
+      <td key={Math.random()}>{get('name')(column)}</td>
     ))}
   </tr>
 );
 
-const PureHistory = ({listBookedTicket}) => (
+const PureTable = ({listBookedTicket, cancelTicket}) => (
   <table className="table table-custom">
     <tbody>
       <ColumnHeader />
       {listBookedTicket &&
         listBookedTicket.map(bookedTicket => (
-          <Row key={Math.random()} rowData={bookedTicket} />
+          <Row
+            key={Math.random()}
+            rowData={bookedTicket}
+            cancelTicket={cancelTicket}
+          />
         ))}
     </tbody>
   </table>
+);
+
+const PureHistory = ({listBookedTicket, cancelTicket}) => (
+  <PureTable listBookedTicket={listBookedTicket} cancelTicket={cancelTicket} />
 );
 
 const connectToRedux = connect(
@@ -152,6 +174,10 @@ const connectToRedux = connect(
   dispatch => ({
     fetchListBookedTicket: flow(
       fetchListBookedTicketThunkCreator,
+      dispatch,
+    ),
+    cancelTicket: flow(
+      cancelTicketThunkCreator,
       dispatch,
     ),
   }),

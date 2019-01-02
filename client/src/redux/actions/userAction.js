@@ -20,6 +20,7 @@ import {
   CHANGE_PASWORD_SUCCESS,
   CHANGE_PASWORD_FAIL,
   FETCH_LIST_BOOKED_TICKET,
+  CANCEL_TICKET,
 } from './actionsTypes';
 import Auth from '../../lib/auth';
 import {thunkBodyCreator, getUserInfo} from '../share';
@@ -177,5 +178,19 @@ export const fetchListBookedTicketThunkCreator = (
     route: `/api/${user.userID}/list-booked-ticket`,
     data: {},
     type: 'get',
+  });
+};
+
+export const cancelTicketThunkCreator = (requestData = {}) => dispatch => {
+  const user = getUserInfo();
+  if (!user) {
+    return history.push('/dang-nhap');
+  }
+  thunkBodyCreator({
+    dispatch,
+    action: CANCEL_TICKET,
+    route: `/api/cancel-ticket`,
+    data: {...requestData, userID: user.userID},
+    type: 'post',
   });
 };

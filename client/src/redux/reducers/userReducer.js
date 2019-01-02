@@ -11,6 +11,7 @@ import {
   SET_USER_INFO_FAIL,
   LOGOUT,
   FETCH_LIST_BOOKED_TICKET,
+  CANCEL_TICKET,
 } from '../actions/actionsTypes';
 import {reducerCreator} from '../share';
 import {genReducerPath} from '../share/utils';
@@ -29,8 +30,14 @@ const fetchListBookedTicketReducer = reducerCreator(
   genReducerPath(FETCH_LIST_BOOKED_TICKET),
 );
 
+const cancelBookedTicketReducer = reducerCreator(
+  CANCEL_TICKET,
+  genReducerPath(CANCEL_TICKET),
+);
+
 const userSettingReducer = combineReducers({
   [FETCH_LIST_BOOKED_TICKET]: fetchListBookedTicketReducer,
+  [CANCEL_TICKET]: cancelBookedTicketReducer,
 });
 
 export default userSettingReducer;

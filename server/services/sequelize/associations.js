@@ -3,17 +3,21 @@ import BusRoute from './models/busRouteModel';
 import Bus from './models/busModel';
 import BusCompany from './models/busCompanyModel';
 import Place from './models/placeModel';
+import BookingModel from './models/bookingModel';
 
-Ticket.belongsTo(BusRoute, { foreignKey: 'busRouteID', onDelete: 'CASCADE' });
-BusRoute.belongsTo(Bus, { foreignKey: 'busID', onDelete: 'CASCADE' });
-Bus.belongsTo(BusCompany, { foreignKey: 'busCompanyID', onDelete: 'CASCADE' });
+Ticket.belongsTo(BusRoute, {foreignKey: 'busRouteID', onDelete: 'CASCADE'});
+BusRoute.belongsTo(Bus, {foreignKey: 'busID', onDelete: 'CASCADE'});
+Bus.belongsTo(BusCompany, {foreignKey: 'busCompanyID', onDelete: 'CASCADE'});
 BusRoute.belongsTo(Place, {
   as: 'startPlace',
   foreignKey: 'startPlaceID',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
 });
 BusRoute.belongsTo(Place, {
   as: 'endPlace',
   foreignKey: 'endPlaceID',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+});
+BookingModel.belongsTo(Ticket, {
+  foreignKey: 'ticketID',
 });
