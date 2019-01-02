@@ -35,7 +35,7 @@ function Admin({ match }) {
       />
       <Route
         exact
-        path={match.url + '/bao-cao-thsong-ke'}
+        path={match.url + '/bao-cao-thong-ke'}
         component={WithAuthorization([ROLE.COMPANY])(Rule)}
       />
     </Fragment>
