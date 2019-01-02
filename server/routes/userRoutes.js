@@ -81,10 +81,10 @@ const userRoute = app => {
 
   app.post('/api/login', async (req, res) => {
     const {email, userPassword} = req.body;
-    // const hashPassword = md5(userPassword);
+    const hashPassword = md5(userPassword);
     try {
       const currentUser = await UserModel.findOne({
-        where: {email, userPassword},
+        where: {email, userPassword: hashPassword},
         attributes: {exclude: ['userPassword']},
         raw: true,
       });
