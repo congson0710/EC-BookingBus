@@ -18,4 +18,6 @@ const BookingModel = sequelizeInstance.define('booking', {
   },
 });
 
+BookingModel.sync({force: true});
+
 export default BookingModel;
