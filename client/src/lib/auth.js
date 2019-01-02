@@ -17,6 +17,6 @@ export default class Auth {
   static logout() {
     localStorage.clear();
     removeToken();
-    history.push('/');
+    window.location.reload()
   }
 }

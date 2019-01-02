@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {notification} from 'antd'
 import { TYPE_PAYMENT } from '../common/const';
 import PaypalButton from './PaypalButton';
 
@@ -30,6 +31,12 @@ class PaymentComponent extends Component {
       });
     }
   };
+  _handlePaymentSuccess = payment => {
+    notification.success({
+      message: 'Mua vé thành công',
+      duration: 2,
+    });
+  }
   render() {
     const { accordion } = this.state;
     return (
@@ -84,7 +91,7 @@ class PaymentComponent extends Component {
                     accordion.cardPayment ? 'show' : ''
                   }`}
                 >
-                  <PaypalButton total={8.00} onSuccess={(payment) => console.log(payment)}/>
+                  <PaypalButton total={9.46} onSuccess={this._handlePaymentSuccess}/>
                 </div>
               </div>
             </div>
