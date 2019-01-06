@@ -21,6 +21,7 @@ import {
   CHANGE_PASWORD_FAIL,
   FETCH_LIST_BOOKED_TICKET,
   CANCEL_TICKET,
+  FETCH_LIST_PAID_TICKET,
 } from './actionsTypes';
 import Auth from '../../lib/auth';
 import {thunkBodyCreator, getUserInfo} from '../share';
@@ -181,11 +182,28 @@ export const fetchListBookedTicketThunkCreator = (
   });
 };
 
+export const fetchListPaidTicketThunkCreator = (
+  requestData = {},
+) => dispatch => {
+  const user = getUserInfo();
+  if (!user) {
+    return history.push('/dang-nhap');
+  }
+  thunkBodyCreator({
+    dispatch,
+    action: FETCH_LIST_PAID_TICKET,
+    route: `/api/${user.userID}/list-paid-ticket`,
+    data: requestData,
+    type: 'get',
+  });
+};
+
 export const cancelTicketThunkCreator = (requestData = {}) => dispatch => {
   const user = getUserInfo();
   if (!user) {
     return history.push('/dang-nhap');
   }
+  console.log('request data', requestData);
   thunkBodyCreator({
     dispatch,
     action: CANCEL_TICKET,

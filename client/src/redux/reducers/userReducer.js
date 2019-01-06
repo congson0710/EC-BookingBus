@@ -12,6 +12,8 @@ import {
   LOGOUT,
   FETCH_LIST_BOOKED_TICKET,
   CANCEL_TICKET,
+  FETCH_LIST_PAID_TICKET,
+  UPDATE_PAYMENT_STATUS,
 } from '../actions/actionsTypes';
 import {reducerCreator} from '../share';
 import {genReducerPath} from '../share/utils';
@@ -30,6 +32,16 @@ const fetchListBookedTicketReducer = reducerCreator(
   genReducerPath(FETCH_LIST_BOOKED_TICKET),
 );
 
+const fetchListPaidTicketReducer = reducerCreator(
+  FETCH_LIST_PAID_TICKET,
+  genReducerPath(FETCH_LIST_PAID_TICKET),
+);
+
+const updatePaymentStatusReducer = reducerCreator(
+  UPDATE_PAYMENT_STATUS,
+  genReducerPath(UPDATE_PAYMENT_STATUS),
+);
+
 const cancelBookedTicketReducer = reducerCreator(
   CANCEL_TICKET,
   genReducerPath(CANCEL_TICKET),
@@ -38,6 +50,8 @@ const cancelBookedTicketReducer = reducerCreator(
 const userSettingReducer = combineReducers({
   [FETCH_LIST_BOOKED_TICKET]: fetchListBookedTicketReducer,
   [CANCEL_TICKET]: cancelBookedTicketReducer,
+  [FETCH_LIST_PAID_TICKET]: fetchListPaidTicketReducer,
+  [UPDATE_PAYMENT_STATUS]: updatePaymentStatusReducer,
 });
 
 export default userSettingReducer;
