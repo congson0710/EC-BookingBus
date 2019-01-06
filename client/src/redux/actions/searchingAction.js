@@ -1,10 +1,6 @@
 import includes from 'lodash/fp/includes';
 import {history} from '../index';
-import {
-  FETCH_START_LIST_PLACE,
-  FETCH_END_LIST_PLACE,
-  SEARCH_TICKET,
-} from './actionsTypes';
+import {FETCH_START_LIST_PLACE, FETCH_END_LIST_PLACE} from './actionsTypes';
 import {thunkBodyCreator} from '../share';
 
 export const searchTicketThunkCreator = (requestData = {}) => () => {

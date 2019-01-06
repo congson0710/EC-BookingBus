@@ -3,15 +3,21 @@ import {withProps} from 'recompose';
 import React, {Component} from 'react';
 import compose from 'recompose/compose';
 import flow from 'lodash/fp/flow';
-import lifecycle from 'recompose/lifecycle';
 import get from 'lodash/fp/get';
-import { TYPE_PAYMENT } from '../common/const';
-import PaypalButton from './PaypalButton';
+import lifecycle from 'recompose/lifecycle';
+import Spinner from 'react-md-spinner';
+import {notification} from 'antd';
 
 import {TYPE_PAYMENT} from '../common/const';
-import {fetchListBookedTicketSelector} from '../redux/selectors/userSelectors.js';
+import {
+  fetchListBookedTicketSelector,
+  isFetchingListBookedTicket,
+} from '../redux/selectors/userSelectors.js';
 import {fetchListBookedTicketThunkCreator} from '../redux/actions/userAction.js';
+import {updatePaymentStatusThunkCreator} from '../redux/actions/bookingAction.js';
 import {getUserInfo} from '../redux/share';
+import {isBookingSelector} from '../redux/selectors/bookingSelectors.js';
+import PaypalButton from './PaypalButton';
 
 const getBusCompanyName = rowData =>
   flow(
@@ -76,8 +82,8 @@ class PaymentComponent extends Component {
     this.state = {
       accordion: {
         cashPayment: false,
-        cardPayment: false
-      }
+        cardPayment: false,
+      },
     };
   }
   _handleChangePayment = e => {
@@ -101,13 +107,20 @@ class PaymentComponent extends Component {
   render() {
     const {accordion} = this.state;
     const {user} = this.props;
-    const {bookedTicket} = this.props;
-    return (
+    const {
+      bookedTicket,
+      isBooking,
+      isFetching,
+      updatePaymentStatus,
+    } = this.props;
+    return isBooking && isFetching ? (
+      <Spinner />
+    ) : (
       <div className="body-section">
         <div className="container mt-5">
           <div className="row">
             <div className="col-8">
-              <h3 className="text-white" style={{ fontSize: '18px' }}>
+              <h3 className="text-white" style={{fontSize: '18px'}}>
                 Vui lòng chọn hình thức thanh toán để hoàn tất việc đặt vé:
               </h3>
               <div className="accordion">
@@ -127,8 +140,7 @@ class PaymentComponent extends Component {
                 <div
                   className={`accordion__body ${
                     accordion.cashPayment ? 'show' : ''
-                  }`}
-                >
+                  }`}>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Labore ab laboriosam impedit in nulla! Ipsa corrupti nesciunt
                   corporis, minus ducimus accusamus incidunt sint unde
@@ -152,9 +164,19 @@ class PaymentComponent extends Component {
                 <div
                   className={`accordion__body ${
                     accordion.cardPayment ? 'show' : ''
-                  }`}
-                >
-                  <PaypalButton total={8.00} onSuccess={(payment) => console.log(payment)}/>
+                  }`}>
+                  <PaypalButton
+                    total={8.0}
+                    onSuccess={() => {
+                      const {userID} = user;
+                      const ticketID = getTicketID(bookedTicket);
+                      updatePaymentStatus({userID, ticketID});
+                      notification.success({
+                        message: 'Bạn đã mua vé thành công!',
+                        duration: 2,
+                      });
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -227,10 +249,16 @@ const withLifecycleHOC = lifecycle({
 const connectToRedux = connect(
   state => ({
     listBookedTicket: fetchListBookedTicketSelector(state),
+    isBooking: isBookingSelector(state),
+    isFetching: isFetchingListBookedTicket(state),
   }),
   dispatch => ({
     fetchListBookedTicket: flow(
       fetchListBookedTicketThunkCreator,
+      dispatch,
+    ),
+    updatePaymentStatus: flow(
+      updatePaymentStatusThunkCreator,
       dispatch,
     ),
   }),

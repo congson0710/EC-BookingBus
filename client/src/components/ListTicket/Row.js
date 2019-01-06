@@ -1,12 +1,15 @@
-import React from 'react';
-import eq from 'lodash/fp/eq';
-import get from 'lodash/fp/get';
-import flow from 'lodash/fp/flow';
 import {connect} from 'react-redux';
+import React from 'react';
+import compose from 'recompose/compose';
+import eq from 'lodash/fp/eq';
+import flow from 'lodash/fp/flow';
+import get from 'lodash/fp/get';
 
-import {history} from '../../redux';
-import {isBookingSelector} from '../../redux/selectors/bookingSelectors';
 import {bookTicketThunkCreator} from '../../redux/actions/bookingAction';
+import {
+  isBookingSelector,
+  bookTicketDataSelector,
+} from '../../redux/selectors/bookingSelectors';
 
 const TICKET_STATUS = 'SOLD';
 const isTicketSold = eq(TICKET_STATUS);
@@ -29,7 +32,12 @@ const getEndPlace = busRoute =>
     get('placeName'),
   )(busRoute);
 
-const PureRow = ({row: {ticketID, bus_route, status, price}, bookTicket}) => (
+const PureRow = ({
+  row: {ticketID, bus_route, status, price},
+  bookTicket,
+  listBookedTicket,
+  bookedTicket,
+}) => (
   <tr>
     <td>{getBusCompanyName(bus_route)}</td>
     <td>{getStartPlace(bus_route)}</td>
@@ -42,9 +50,8 @@ const PureRow = ({row: {ticketID, bus_route, status, price}, bookTicket}) => (
       {!isTicketSold(status) ? (
         <button
           className="btn btn-danger"
-          onClick={async () => {
-            await bookTicket({ticketID});
-            history.push(`/thanh-toan?ticketID=${ticketID}`);
+          onClick={() => {
+            bookTicket({ticketID});
           }}>
           Mua vé
         </button>
@@ -56,6 +63,7 @@ const PureRow = ({row: {ticketID, bus_route, status, price}, bookTicket}) => (
 const connectToRedux = connect(
   state => ({
     isBooking: isBookingSelector(state),
+    bookedTicket: bookTicketDataSelector(state),
   }),
   dispatch => ({
     bookTicket: flow(
@@ -65,4 +73,6 @@ const connectToRedux = connect(
   }),
 );
 
-export default connectToRedux(PureRow);
+const enhance = compose(connectToRedux);
+
+export default enhance(PureRow);
