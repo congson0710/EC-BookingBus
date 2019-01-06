@@ -16,8 +16,12 @@ const BookingModel = sequelizeInstance.define('booking', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  paid: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+  },
 });
 
-BookingModel.sync({force: true});
+// BookingModel.sync({force: true});
 
 export default BookingModel;

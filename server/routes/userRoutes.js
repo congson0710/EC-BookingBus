@@ -56,6 +56,49 @@ const userRoute = app => {
     }
   });
 
+  app.get('/api/:userID/list-paid-ticket', async (req, res) => {
+    const {userID} = req.params;
+    try {
+      const result = await BookingModel.findAll({
+        where: {
+          userID,
+          paid: true,
+        },
+        include: [
+          {
+            model: TicketModel,
+            include: [
+              {
+                model: BusRouteModel,
+                include: [
+                  {
+                    model: BusModel,
+                    include: [
+                      {
+                        model: BusCompanyModel,
+                      },
+                    ],
+                  },
+                  {
+                    model: PlaceModel,
+                    as: 'startPlace',
+                  },
+                  {
+                    model: PlaceModel,
+                    as: 'endPlace',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      res.status(200).send(result);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
   app.post('/api/cancel-ticket', async (req, res) => {
     try {
       const {ticketID, userID} = req.body;
