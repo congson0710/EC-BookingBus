@@ -104,6 +104,12 @@ class PaymentComponent extends Component {
       });
     }
   };
+  _handlePaymentSuccess = payment => {
+    notification.success({
+      message: 'Mua vé thành công',
+      duration: 2,
+    });
+  }
   render() {
     const {accordion} = this.state;
     const {user} = this.props;
@@ -140,11 +146,9 @@ class PaymentComponent extends Component {
                 <div
                   className={`accordion__body ${
                     accordion.cashPayment ? 'show' : ''
-                  }`}>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore ab laboriosam impedit in nulla! Ipsa corrupti nesciunt
-                  corporis, minus ducimus accusamus incidunt sint unde
-                  necessitatibus iste impedit explicabo recusandae accusantium.
+                  }`}
+                >
+                  Nhân viên sẽ liên hệ với bạn để hướng dẫn thanh toán bằng tiền mặt
                 </div>
               </div>
               <div className="accordion">
