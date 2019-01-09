@@ -2,7 +2,6 @@ import Sequelize from 'sequelize';
 import _ from 'lodash';
 
 import { randomBusCompanyID } from '../../../utils';
-import { ticketModel } from './ticketModel';
 import { sequelizeInstance } from '../index';
 
 const BusModel = sequelizeInstance.define('bus', {
@@ -19,15 +18,15 @@ const BusModel = sequelizeInstance.define('bus', {
   totalSeat: {
     type: Sequelize.INTEGER,
     allowNull: false
-  }
+  },
+  numberPlate: Sequelize.STRING,
+  allowNull: false
 });
-
 // BusModel.sync({ force: true }).then(() => {
-//   _.times(100, () => {
-//     return BusModel.create({
-//       busCompanyID: randomBusCompanyID(),
-//       totalSeat: 30
-//     });
+//   return BusModel.create({
+//     busCompanyID: randomBusCompanyID(),
+//     totalSeat: 30,
+//     numberPlate: '81S1-5647'
 //   });
 // });
 

@@ -132,8 +132,10 @@ const userRoute = app => {
         raw: true,
       });
       if (currentUser) {
-        const token = jwt.sign({userID: currentUser.userID}, JWT.secret);
-        return res.json({currentUser, token, message: 'Login successfully!'});
+        if (currentUser.roleID === 1) {
+          const token = jwt.sign({userID: currentUser.userID}, JWT.secret);
+          return res.json({currentUser, token, message: 'Login successfully!'});
+        }
       }
       throw new Error('Incorrect email or password.');
     } catch (error) {
