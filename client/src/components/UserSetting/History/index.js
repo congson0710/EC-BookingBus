@@ -123,18 +123,6 @@ const Row = ({rowData, cancelTicket}) => (
         ? 'Đã đặt'
         : 'Chưa đặt'}
     </td>
-    <td>
-      {flow(
-        getStatus,
-        isBookedTicket,
-      )(rowData) ? (
-        <button
-          className="btn btn-danger"
-          onClick={() => cancelTicket({ticketID: getTicketID(rowData)})}>
-          Hủy vé
-        </button>
-      ) : null}
-    </td>
   </tr>
 );
 
