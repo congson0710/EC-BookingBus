@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 
 import CheckInformation from './CheckInformation';
 import ScheduleBusRoute from './ScheduleBusRoute';
+import Report from './Report';
 import AdminLogin from './AdminLogin';
 import Rule from './Rule';
 import WithAuthorization from '../../AuthHOC';
@@ -31,12 +32,12 @@ function Admin({ match }) {
       <Route
         exact
         path={match.url + '/quan-ly-dat-huy'}
-        component={WithAuthorization([ROLE.COMPANY])(Rule)}
+        component={WithAuthorization([ROLE.COMPANY])(ScheduleBusRoute)}
       />
       <Route
         exact
         path={match.url + '/bao-cao-thong-ke'}
-        component={WithAuthorization([ROLE.COMPANY])(Rule)}
+        component={WithAuthorization([ROLE.COMPANY])(Report)}
       />
     </Fragment>
   );

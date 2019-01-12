@@ -106,7 +106,7 @@ class CheckTicketComponent extends Component {
     return (
       <React.Fragment>
         <tbody>
-          {listPaidTicket.map(ticket => (
+          {listPaidTicket.length > 0 ? listPaidTicket.map(ticket => (
             <tr key={Math.random()}>
               <td>{getBusCompanyName(ticket)}</td>
               <td>{getStartPlace(ticket)}</td>
@@ -121,7 +121,7 @@ class CheckTicketComponent extends Component {
                 </button>
               </td>
             </tr>
-          ))}
+          )) : <tr><td colSpan='6' className="text-center">Không có dữ liệu</td></tr>}
         </tbody>
       </React.Fragment>
     );
@@ -134,19 +134,21 @@ class CheckTicketComponent extends Component {
       <div className="body-section">
         <div className="container">
           <h1 className="text-white text-center">Danh sách vé</h1>
-          <table className="table table-custom">
-            <thead>
-              <tr>
-                <th>Nhà xe</th>
-                <th>Số xe</th>
-                <th>Thời gian đi</th>
-                <th>Số ghế</th>
-                <th>Giá vé</th>
-                <th />
-              </tr>
-            </thead>
-            {this._renderListTicket(listPaidTicket)}
-          </table>
+          <div className="table-responsive">
+            <table className="table table-custom">
+              <thead>
+                <tr>
+                  <th>Nhà xe</th>
+                  <th>Số xe</th>
+                  <th>Thời gian đi</th>
+                  <th>Số ghế</th>
+                  <th>Giá vé</th>
+                  <th />
+                </tr>
+              </thead>
+              {this._renderListTicket(listPaidTicket)}
+            </table>
+          </div>
         </div>
 
         <Modal

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Icon } from 'antd';
 import MenuAuthorization from './AuthHOC/MenuAuthorization';
 import Logo from '../images/logo.png';
 import { ROLE } from '../common/const';
@@ -12,9 +13,17 @@ function mapDispatchToProps(dispatch) {
   };
 }
 class Menu extends Component {
+  state = {
+    isMenuOpen: false
+  };
   _logout = () => {
     this.props.onLogoutRequest();
-  }
+  };
+  _toggleMenu = () => {
+    this.setState({
+      isMenuOpen: !this.state.isMenuOpen
+    });
+  };
   render() {
     return (
       <header className="header">
@@ -29,9 +38,16 @@ class Menu extends Component {
                 </div>
               </div>
             </div>
-
-            <nav className="main_nav ml-auto">
+            <Icon className="menu-icon" onClick={this._toggleMenu} type="menu-fold" />
+            <nav className={`main_nav ml-auto ${this.state.isMenuOpen ? 'show' : ''}`}>
               <ul className="main_nav_list">
+                <li className="close-icon">
+                  <Icon
+                    style={{ fontSize: '28px', color: '#fff' }}
+                    type="close"
+                    onClick={this._toggleMenu}
+                  />
+                </li>
                 <li className="main_nav_item">
                   <MenuAuthorization>
                     <NavLink activeClassName="active" exact to="/">
