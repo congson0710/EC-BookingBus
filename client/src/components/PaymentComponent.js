@@ -125,7 +125,7 @@ class PaymentComponent extends Component {
       <div className="body-section">
         <div className="container mt-5">
           <div className="row">
-            <div className="col-8">
+            <div className="col-md-8">
               <h3 className="text-white" style={{fontSize: '18px'}}>
                 Vui lòng chọn hình thức thanh toán để hoàn tất việc đặt vé:
               </h3>
@@ -184,7 +184,7 @@ class PaymentComponent extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-md-4 mt-5 mt-md-0">
               <table className="table table-custom no-border">
                 <tbody>
                   <tr>

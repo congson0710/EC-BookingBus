@@ -48,16 +48,18 @@ const columns = [
 ];
 
 const PureTable = ({listTicket}) => (
-  <table className="table table-custom">
-    <tbody>
-      <tr>
-        {map(column => <th key={Math.random()}>{get('name')(column)}</th>)(
-          columns,
-        )}
-      </tr>
-      {map(ticket => <Row key={Math.random()} row={ticket} />)(listTicket)}
-    </tbody>
-  </table>
+  <div className="table-responsive">
+    <table className="table table-custom">
+      <tbody>
+        <tr>
+          {map(column => <th key={Math.random()}>{get('name')(column)}</th>)(
+            columns,
+          )}
+        </tr>
+        {map(ticket => <Row key={Math.random()} row={ticket} />)(listTicket)}
+      </tbody>
+    </table>
+  </div>
 );
 
 const connectToRedux = connect(

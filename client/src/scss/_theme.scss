@@ -357,6 +357,12 @@ section {
 .main_nav {
   /*height: 100%;*/
   padding-right: 60px;
+  .close-icon {
+    display: none;
+  }
+  .menu-icon {
+    display: none;
+  }
 }
 .main_nav_list {
   height: 100%;
@@ -1570,12 +1576,54 @@ section {
 ************/
 
 @media only screen and (max-width: 991px) {
+  .find_button {
+    width: 100%!important;
+  }
   .header {
     top: 15px;
   }
-  .main_nav,
+  .main_button {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    line-height: 40px;
+  }
   .search {
     display: none !important;
+  }
+  .menu-icon {
+    position: absolute;
+    color: #fff;
+    right: 20px;
+    font-size: 28px;
+    display: block;
+  }
+  .main_nav {
+    display: none;
+    background: #131a2f;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-right: 0;
+    .main_nav_item {
+      display: block;
+      text-align: center;
+      button {
+        width: 100%;
+      }
+    }
+    .close-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      display: block;
+    }
+    &.show {
+      display: block;
+    }
   }
   .hamburger {
     display: block;
@@ -1757,6 +1805,7 @@ section {
   }
   .header_container {
     height: 70px;
+    position: relative;
   }
   .header.scrolled .header_container {
     height: 70px;
@@ -1956,4 +2005,9 @@ section {
 }
 .ant-tabs-ink-bar {
   background: #fe435b;
+}
+.ant-tabs-tab-next-icon-target, .ant-tabs-tab-prev-icon-target {
+  @media screen and (max-width: 991px) {
+    color: #fff !important;
+  }
 }

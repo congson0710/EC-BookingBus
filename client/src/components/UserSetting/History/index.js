@@ -147,19 +147,25 @@ const ColumnHeader = () => (
 );
 
 const PureTable = ({listBookedTicket, cancelTicket}) => (
-  <table className="table table-custom">
-    <tbody>
-      <ColumnHeader />
-      {listBookedTicket &&
-        listBookedTicket.map(bookedTicket => (
-          <Row
-            key={Math.random()}
-            rowData={bookedTicket}
-            cancelTicket={cancelTicket}
-          />
-        ))}
-    </tbody>
-  </table>
+  <div className="table-responsive">
+    <table className="table table-custom">
+      <tbody>
+        <ColumnHeader />
+        {listBookedTicket ?
+          listBookedTicket.map(bookedTicket => (
+            <Row
+              key={Math.random()}
+              rowData={bookedTicket}
+              cancelTicket={cancelTicket}
+            />
+          )) : (
+            <tr>
+              <td colSpan="7" className="text-center">Không có dữ liệu</td>
+            </tr>
+          )}
+      </tbody>
+    </table>
+  </div>
 );
 
 const PureHistory = ({listBookedTicket, cancelTicket}) => (
